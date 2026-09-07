@@ -3,13 +3,27 @@
 Site statique (HTML/CSS/JS, sans dépendance ni build) pour l'activité de conseil,
 expertise et formation de **Lou François**.
 
+## Trois maquettes au choix
+
+`index.html` est un **sélecteur** : trois colonnes plein écran, une par direction
+graphique. On clique pour explorer chacune.
+
+| Fichier    | Direction              | Esprit |
+|------------|------------------------|--------|
+| `v1.html`  | Cabinet d'architecte   | sobre, précis, beaucoup d'air (CSS `style.css`, JS `main.js`) |
+| `v2.html`  | Atelier                | chaleureux, fait main, polaroïds, écriture (CSS `atelier.css`, JS `atelier.js`) |
+| `v3.html`  | Almanach imprimé       | affiche ancienne, letterpress, symétrique (CSS `v3.css`) |
+
+Une fois la version retenue, elle deviendra `index.html` (et on supprimera les autres).
+
 ## Structure
 
 ```
-index.html            page unique (sections + ancres)
-assets/css/style.css   feuille de style
-assets/js/main.js      menu mobile + révélation au défilement
-assets/img/            logo (original JPG + PNG détouré approximatif)
+index.html             sélecteur des 3 maquettes
+v1.html / v2.html / v3.html   les 3 versions
+assets/css/             style.css · atelier.css · v3.css
+assets/js/              main.js · atelier.js
+assets/img/             logo (original JPG + PNG détouré approximatif)
 ```
 
 ## Lancer en local

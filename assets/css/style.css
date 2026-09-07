@@ -235,6 +235,14 @@ a{ color:var(--wood-dark); text-underline-offset:2px; }
 .reveal.is-in{ opacity:1; transform:none; }
 @media (prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; } }
 
+/* ---------- Retour au choix des maquettes ---------- */
+.back-versions{
+  position:fixed; left:12px; bottom:12px; z-index:150;
+  font-family:var(--sans); font-size:.8rem; background:var(--ink); color:var(--parchment);
+  padding:.4rem .7rem; border-radius:5px; text-decoration:none; opacity:.72;
+}
+.back-versions:hover{ opacity:1; color:#fff; }
+
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
   .parcours-layout,.contact-layout{ grid-template-columns:1fr; }

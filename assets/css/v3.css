@@ -1,0 +1,147 @@
+/* ============================================================
+   L'Héritage d'un savoir-faire — VERSION 3 « Almanach »
+   Letterpress / affiche ancienne / catalogue imprimé
+   ============================================================ */
+
+:root{
+  --paper:#f3e8ce;
+  --paper-2:#ecdfbe;
+  --ink:#221b11;
+  --forest:#2f4030;
+  --forest-2:#213021;
+  --ochre:#c2872a;
+  --brick:#9c3a22;
+  --rule:#221b11;
+
+  --disp:"Alfa Slab One", Georgia, serif;
+  --label:"Oswald", "Arial Narrow", system-ui, sans-serif;
+  --body:"Spectral", Georgia, "Times New Roman", serif;
+
+  --wrap:1000px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } }
+
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.15rem; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:var(--brick); }
+
+.sheet{
+  max-width:var(--wrap); margin:0 auto; background:var(--paper);
+  border-left:2px solid var(--rule); border-right:2px solid var(--rule);
+}
+.pad{ padding:clamp(1.4rem,5vw,3.2rem); }
+
+.sr-only,.skip-link{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.skip-link:focus{ position:fixed; top:.6rem; left:.6rem; width:auto; height:auto; clip:auto; background:var(--ink); color:var(--paper); padding:.6rem 1rem; z-index:200; }
+
+/* ---------- Masthead ---------- */
+.masthead{ background:var(--forest); color:var(--paper); text-align:center; border-bottom:6px double var(--paper); }
+.masthead-top{ display:flex; align-items:center; justify-content:center; gap:1rem; padding:1.1rem 1rem .5rem; }
+.masthead-mark{ width:58px; height:58px; border-radius:50%; border:2px solid var(--paper); }
+.masthead h1{ font-family:var(--label); font-weight:600; letter-spacing:.34em; font-size:clamp(1rem,3vw,1.5rem); margin:0; text-transform:uppercase; }
+.masthead .sub{ font-family:var(--label); font-weight:400; letter-spacing:.22em; font-size:.76rem; text-transform:uppercase; padding-bottom:.9rem; color:#d8cfae; }
+.masthead nav{ border-top:1px solid rgba(243,232,206,.4); padding:.5rem 1rem; display:flex; gap:1.4rem; justify-content:center; flex-wrap:wrap; }
+.masthead nav a{ font-family:var(--label); font-weight:500; letter-spacing:.12em; font-size:.78rem; text-transform:uppercase; color:var(--paper); text-decoration:none; }
+.masthead nav a:hover{ color:var(--ochre); }
+
+/* ---------- Broadside / hero ---------- */
+.broadside{ text-align:center; border-bottom:2px solid var(--rule); }
+.est{ font-family:var(--label); letter-spacing:.3em; font-size:.8rem; text-transform:uppercase; color:var(--brick); margin:0 0 .8rem; }
+.broadside h2{
+  font-family:var(--disp); font-weight:400; line-height:1; letter-spacing:.01em;
+  font-size:clamp(2.4rem,8vw,5rem); margin:0 0 .6rem; text-transform:uppercase;
+}
+.broadside .say{ font-family:var(--label); font-weight:400; letter-spacing:.06em; font-size:clamp(1rem,2.6vw,1.35rem); text-transform:uppercase; color:var(--forest); margin:0 0 1.6rem; }
+.broadside p.lede{ max-width:56ch; margin:0 auto 1.8rem; }
+.rule-orn{ display:flex; align-items:center; justify-content:center; gap:1rem; margin:1.6rem auto 0; color:var(--ink); }
+.rule-orn::before,.rule-orn::after{ content:""; height:2px; background:var(--rule); flex:1; max-width:120px; }
+
+.press{ display:inline-flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
+.press a{
+  font-family:var(--label); font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  font-size:.9rem; text-decoration:none; padding:.85rem 1.7rem; border:2px solid var(--ink);
+}
+.press a.solid{ background:var(--forest); color:var(--paper); box-shadow:5px 5px 0 var(--ink); }
+.press a.hollow{ background:var(--paper); color:var(--ink); box-shadow:5px 5px 0 var(--ink); }
+
+/* ---------- Rubriques ---------- */
+.rubrique{ border-bottom:2px solid var(--rule); }
+.rubrique-head{ text-align:center; margin:0 0 1.8rem; }
+.numeral{ font-family:var(--disp); font-size:1.4rem; color:var(--brick); display:block; }
+.rubrique-head h3{ font-family:var(--label); font-weight:600; letter-spacing:.2em; text-transform:uppercase; font-size:clamp(1.2rem,3.4vw,1.7rem); margin:.2rem 0 0; }
+
+/* ---------- Catalogue de services ---------- */
+.catalogue{ border-top:2px solid var(--rule); }
+.entry{ display:grid; grid-template-columns:3.5rem 1fr; gap:1.2rem; padding:1.5rem 0; border-bottom:1px solid rgba(34,27,17,.35); }
+.entry:last-child{ border-bottom:0; }
+.entry .rn{ font-family:var(--disp); font-size:1.5rem; color:var(--brick); line-height:1; }
+.entry h4{ font-family:var(--label); font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:1.12rem; margin:0 0 .2rem; }
+.entry .pour{ font-style:italic; color:var(--forest); margin:0 0 .5rem; }
+.entry p{ margin:0; }
+.devis-line{ text-align:center; font-family:var(--label); letter-spacing:.14em; text-transform:uppercase; font-size:.85rem; margin:1.6rem 0 0; color:var(--brick); }
+
+/* ---------- Le maître de l'ouvrage ---------- */
+.about{ display:grid; grid-template-columns:260px 1fr; gap:2.4rem; align-items:start; }
+.portrait{ border:2px solid var(--rule); background:var(--paper-2); padding:.6rem; }
+.portrait-img{ aspect-ratio:4/5; background:repeating-linear-gradient(45deg,#e7d9b6 0 12px,#e0d0a8 12px 24px); display:grid; place-items:center; font-family:var(--label); letter-spacing:.1em; text-transform:uppercase; font-size:.72rem; color:var(--forest); text-align:center; padding:1rem; }
+.portrait-cap{ font-family:var(--label); letter-spacing:.1em; text-transform:uppercase; font-size:.7rem; text-align:center; margin:.5rem 0 0; color:var(--ink); }
+.about-txt p{ margin:0 0 1rem; }
+.about-txt p:first-of-type::first-letter{ font-family:var(--disp); font-size:3.4rem; line-height:.8; float:left; margin:.1em .12em 0 0; color:var(--brick); }
+.about-sign{ font-family:var(--disp); font-size:1.3rem; margin:1rem 0 0; }
+
+/* ---------- Registre des travaux ---------- */
+.ledger{ list-style:none; margin:0; padding:0; }
+.ledger li{ display:flex; align-items:baseline; gap:.6rem; padding:.55rem 0; font-size:1.06rem; }
+.ledger .what{ font-weight:500; white-space:nowrap; }
+.ledger .dots{ flex:1; border-bottom:2px dotted rgba(34,27,17,.5); transform:translateY(-.25em); }
+.ledger .where{ font-family:var(--label); letter-spacing:.06em; text-transform:uppercase; font-size:.82rem; color:var(--forest); white-space:nowrap; }
+
+/* ---------- Mode d'emploi ---------- */
+.howto{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:2px solid var(--rule); }
+.howto li{ list-style:none; padding:1.6rem 1.2rem; text-align:center; border-right:2px solid var(--rule); }
+.howto li:last-child{ border-right:0; }
+.howto .rn{ font-family:var(--disp); font-size:1.6rem; color:var(--brick); }
+.howto h4{ font-family:var(--label); font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:1rem; margin:.3rem 0 .4rem; }
+.howto p{ margin:0; font-size:1rem; }
+
+/* ---------- Correspondance ---------- */
+.correspondance{ background:var(--forest); color:var(--paper); text-align:center; }
+.correspondance h3,.correspondance .numeral{ color:var(--paper); }
+.correspondance .numeral{ color:var(--ochre); }
+.correspondance a{ color:#fff; }
+.corr-phone{ font-family:var(--disp); font-size:clamp(1.8rem,6vw,3rem); margin:1rem 0; }
+.corr-phone a{ text-decoration:none; }
+.letter{ max-width:520px; margin:2rem auto 0; text-align:left; }
+.letter label{ display:block; font-family:var(--label); letter-spacing:.1em; text-transform:uppercase; font-size:.78rem; margin-bottom:.9rem; }
+.letter input,.letter textarea{ width:100%; margin-top:.3rem; padding:.65rem .8rem; font:inherit; font-size:1rem; background:var(--paper); color:var(--ink); border:2px solid var(--ink); }
+.letter button{ font-family:var(--label); font-weight:600; letter-spacing:.12em; text-transform:uppercase; background:var(--ochre); color:var(--ink); border:2px solid var(--ink); padding:.8rem 1.8rem; cursor:pointer; box-shadow:4px 4px 0 var(--forest-2); }
+.letter .mini{ font-family:var(--body); text-transform:none; letter-spacing:0; font-size:.9rem; color:#d8cfae; margin-top:.9rem; }
+
+/* ---------- Pied ---------- */
+.colophon{ text-align:center; font-family:var(--label); letter-spacing:.16em; text-transform:uppercase; font-size:.74rem; color:var(--ink); padding:1.4rem 1rem; border-top:6px double var(--rule); }
+.colophon a{ color:var(--brick); }
+
+/* ---------- Retour au choix ---------- */
+.back-versions{ position:fixed; left:12px; bottom:12px; z-index:150; font-family:var(--label); letter-spacing:.08em; text-transform:uppercase; font-size:.72rem; background:var(--ink); color:var(--paper); padding:.45rem .8rem; text-decoration:none; opacity:.8; }
+.back-versions:hover{ opacity:1; color:#fff; }
+
+/* ---------- Responsive ---------- */
+@media (max-width:820px){
+  .about{ grid-template-columns:1fr; }
+  .portrait{ max-width:240px; margin:0 auto; }
+  .howto{ grid-template-columns:1fr; }
+  .howto li{ border-right:0; border-bottom:2px solid var(--rule); }
+  .howto li:last-child{ border-bottom:0; }
+}
+@media (max-width:560px){
+  .ledger li{ flex-wrap:wrap; gap:.2rem; }
+  .ledger .dots{ display:none; }
+  .entry{ grid-template-columns:1fr; gap:.4rem; }
+}
