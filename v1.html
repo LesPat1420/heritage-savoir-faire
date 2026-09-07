@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=3">
 </head>
 <body>
 
@@ -45,7 +45,18 @@
 
   <section class="hero">
     <div class="hero-grid" aria-hidden="true"></div>
-    <canvas class="hero-truss" id="hero-charpente" aria-hidden="true"></canvas>
+    <div class="hero-truss" id="hero-truss">
+      <svg class="hero-truss-svg" viewBox="0 0 400 160" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
+        <g fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 150 L200 20 L380 150 Z"/>
+          <path d="M20 150 L380 150"/>
+          <path d="M200 20 L200 150"/>
+          <path d="M110 85 L200 150 M290 85 L200 150"/>
+          <path d="M110 85 L110 150 M290 85 L290 150"/>
+        </g>
+      </svg>
+      <canvas id="hero-charpente" aria-hidden="true"></canvas>
+    </div>
     <div class="wrap hero-inner">
       <p class="hero-eyebrow">Conseil · Expertise · Formation</p>
       <h1><span>Trente ans de charpente</span> <span>au service de vos projets</span></h1>
@@ -249,12 +260,14 @@
 
 <script src="assets/js/main.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="assets/js/charpente3d.js" defer></script>
-<script defer>
+<script src="assets/js/charpente3d.js?v=2" defer></script>
+<script>
   window.addEventListener('load', function () {
+    var box = document.getElementById('hero-truss');
     var c = document.getElementById('hero-charpente');
-    if (c && window.Charpente3D && c.clientWidth > 0) {
-      window.Charpente3D.create(c, { shadowMap: 1024, dist: 15.5, phi: 1.16 });
+    if (!box || !c || getComputedStyle(box).display === 'none') return;
+    if (window.Charpente3D && window.Charpente3D.create(c, { shadowMap: 1024, dist: 15.5, phi: 1.16 })) {
+      box.classList.add('is-3d');           // masque le dessin au trait de secours
     }
   });
 </script>
