@@ -45,15 +45,7 @@
 
   <section class="hero">
     <div class="hero-grid" aria-hidden="true"></div>
-    <svg class="hero-truss" viewBox="0 0 400 160" aria-hidden="true" preserveAspectRatio="xMidYMax meet">
-      <g fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M20 150 L200 20 L380 150 Z"/>
-        <path d="M20 150 L380 150"/>
-        <path d="M200 20 L200 150"/>
-        <path d="M110 85 L200 150 M290 85 L200 150"/>
-        <path d="M110 85 L110 150 M290 85 L290 150"/>
-      </g>
-    </svg>
+    <canvas class="hero-truss" id="hero-charpente" aria-hidden="true"></canvas>
     <div class="wrap hero-inner">
       <p class="hero-eyebrow">Conseil · Expertise · Formation</p>
       <h1><span>Trente ans de charpente</span> <span>au service de vos projets</span></h1>
@@ -256,5 +248,15 @@
 <a class="back-versions" href="index.html">‹ Les 3 maquettes</a>
 
 <script src="assets/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="assets/js/charpente3d.js" defer></script>
+<script defer>
+  window.addEventListener('load', function () {
+    var c = document.getElementById('hero-charpente');
+    if (c && window.Charpente3D && c.clientWidth > 0) {
+      window.Charpente3D.create(c, { shadowMap: 1024, dist: 15.5, phi: 1.16 });
+    }
+  });
+</script>
 </body>
 </html>
