@@ -1,6 +1,7 @@
 /* ============================================================
-   Charpente 3D — ferme traditionnelle à poinçon (Three.js)
-   Usage :  Charpente3D.create(canvasElement, { interactive:true })
+   Bois 3D — modèles de charpente (Three.js)
+   Usage :  var api = Charpente3D.create(canvas, { interactive:true });
+            api.next() / api.prev() / api.setModel(i) / api.getLabel()
    Nécessite three.min.js chargé avant ce fichier.
    ============================================================ */
 window.Charpente3D = (function () {
@@ -19,11 +20,16 @@ window.Charpente3D = (function () {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(opts.fov || 38, 1, 0.1, 100);
-    let camDist = opts.dist || 15;
-    let camPhi = opts.phi || 1.12;
-    let camTheta = opts.theta || 0.7;
     const autoSpeed = opts.autoSpeed != null ? opts.autoSpeed : 0.0022;
     let autol = true;
+
+    // vue courante (modifiée par le glisser + le modèle actif)
+    const view = {
+      dist: opts.dist || 15,
+      phi: opts.phi || 1.12,
+      theta: opts.theta || 0.7,
+      target: new THREE.Vector3(0, 1.4, 0)
+    };
 
     // ---- Lumières ----
     scene.add(new THREE.HemisphereLight(0xfff4e0, 0x6b5a44, 0.85));
@@ -32,13 +38,13 @@ window.Charpente3D = (function () {
     sun.castShadow = true;
     const sm = opts.shadowMap || 2048;
     sun.shadow.mapSize.set(sm, sm);
-    sun.shadow.camera.left = -10; sun.shadow.camera.right = 10;
-    sun.shadow.camera.top = 10; sun.shadow.camera.bottom = -10;
+    sun.shadow.camera.left = -12; sun.shadow.camera.right = 12;
+    sun.shadow.camera.top = 12; sun.shadow.camera.bottom = -12;
     scene.add(sun);
 
     // ---- Sol (ombre uniquement) ----
     const ground = new THREE.Mesh(
-      new THREE.PlaneGeometry(60, 60),
+      new THREE.PlaneGeometry(80, 80),
       new THREE.ShadowMaterial({ opacity: opts.shadowOpacity != null ? opts.shadowOpacity : 0.16 })
     );
     ground.rotation.x = -Math.PI / 2;
@@ -46,16 +52,22 @@ window.Charpente3D = (function () {
     ground.receiveShadow = true;
     scene.add(ground);
 
-    // ---- Bois ----
+    // ---- Matériaux bois ----
     const woodLight = new THREE.MeshStandardMaterial({ color: 0xb07b42, roughness: 0.82, metalness: 0.02 });
     const woodDark  = new THREE.MeshStandardMaterial({ color: 0x8a5a2c, roughness: 0.85, metalness: 0.02 });
     const chevMat   = new THREE.MeshStandardMaterial({ color: 0xc08a4e, roughness: 0.8 });
-
-    const truss = new THREE.Group();
+    const pegMat    = new THREE.MeshStandardMaterial({ color: 0x5f3c1f, roughness: 0.7 });
+    const plasterMat = new THREE.MeshStandardMaterial({ color: 0xe7dcc3, roughness: 1 });
 
     function beam(len, h, d, mat) {
       const m = new THREE.Mesh(new THREE.BoxGeometry(len, h, d), mat || woodLight);
       m.castShadow = true; m.receiveShadow = true;
+      return m;
+    }
+    function box(g, w, h, d, x, y, z, mat) {
+      const m = beam(w, h, d, mat);
+      m.position.set(x, y, z);
+      g.add(m);
       return m;
     }
     function member(group, x1, y1, x2, y2, h, d, mat) {
@@ -66,59 +78,150 @@ window.Charpente3D = (function () {
       group.add(b);
     }
 
-    const SPAN = 8, HALF = SPAN / 2, RISE = 3.1, FOOT = 0;
+    /* ========== Modèle 1 : ferme à poinçon ========== */
+    function buildFerme() {
+      const g = new THREE.Group();
+      const SPAN = 8, HALF = SPAN / 2, RISE = 3.1, FOOT = 0;
 
-    function makeFerme(z) {
-      const f = new THREE.Group();
-      member(f, -HALF, FOOT, HALF, FOOT, 0.42, 0.34, woodDark);          // entrait
-      member(f, -HALF, FOOT, 0, RISE, 0.38, 0.3);                        // arbalétrier g
-      member(f,  HALF, FOOT, 0, RISE, 0.38, 0.3);                        // arbalétrier d
-      member(f, 0, FOOT, 0, RISE, 0.34, 0.34, woodDark);                 // poinçon
-      member(f, 0, RISE * 0.42, -HALF * 0.52, RISE * 0.52, 0.26, 0.24);  // contrefiche g
-      member(f, 0, RISE * 0.42,  HALF * 0.52, RISE * 0.52, 0.26, 0.24);  // contrefiche d
-      member(f, 0, RISE * 0.42, -HALF * 0.22, FOOT + 0.9, 0.2, 0.22);    // aisselier g
-      member(f, 0, RISE * 0.42,  HALF * 0.22, FOOT + 0.9, 0.2, 0.22);    // aisselier d
-      f.position.z = z;
-      return f;
-    }
-
-    const Z = opts.fermes || [-3, 0, 3];
-    Z.forEach((z) => truss.add(makeFerme(z)));
-
-    const spanZ = Z[Z.length - 1] - Z[0] + 1.2;
-    function longBeam(x, y, h, d, mat) {
-      const m = beam(spanZ, h, d, mat);
-      m.rotation.y = Math.PI / 2;
-      m.position.set(x, y, 0);
-      truss.add(m);
-    }
-    longBeam(-HALF, FOOT, 0.3, 0.3, woodDark);   // sablière g
-    longBeam( HALF, FOOT, 0.3, 0.3, woodDark);   // sablière d
-    longBeam(0, RISE - 0.02, 0.26, 0.26, woodDark); // faîtière
-    const px = -HALF * 0.5, py = FOOT + RISE * 0.5;
-    longBeam(px, py + 0.15, 0.22, 0.22);          // panne g
-    longBeam(-px, py + 0.15, 0.22, 0.22);         // panne d
-
-    // ---- Chevrons ----
-    const slopeLen = Math.hypot(HALF, RISE);
-    const overhang = 0.7;
-    const nChev = opts.chevrons || 8;
-    for (const s of [-1, 1]) {
-      const dx = (s * HALF) / slopeLen, dy = -RISE / slopeLen;
-      const nx = -dy, ny = dx;
-      const L = slopeLen + overhang;
-      const cx = dx * (L / 2) + nx * 0.16;
-      const cy = RISE + dy * (L / 2) + ny * 0.16;
-      for (let i = 0; i < nChev; i++) {
-        const cz = Z[0] - 0.4 + (i / (nChev - 1)) * (spanZ - 0.4);
-        const c = beam(L, 0.12, 0.15, chevMat);
-        c.position.set(cx, cy, cz);
-        c.rotation.z = Math.atan2(dy, dx);
-        truss.add(c);
+      function makeFerme(z) {
+        const f = new THREE.Group();
+        member(f, -HALF, FOOT, HALF, FOOT, 0.42, 0.34, woodDark);
+        member(f, -HALF, FOOT, 0, RISE, 0.38, 0.3);
+        member(f,  HALF, FOOT, 0, RISE, 0.38, 0.3);
+        member(f, 0, FOOT, 0, RISE, 0.34, 0.34, woodDark);
+        member(f, 0, RISE * 0.42, -HALF * 0.52, RISE * 0.52, 0.26, 0.24);
+        member(f, 0, RISE * 0.42,  HALF * 0.52, RISE * 0.52, 0.26, 0.24);
+        member(f, 0, RISE * 0.42, -HALF * 0.22, FOOT + 0.9, 0.2, 0.22);
+        member(f, 0, RISE * 0.42,  HALF * 0.22, FOOT + 0.9, 0.2, 0.22);
+        f.position.z = z;
+        return f;
       }
+
+      const Z = opts.fermes || [-3, 0, 3];
+      Z.forEach((z) => g.add(makeFerme(z)));
+
+      const spanZ = Z[Z.length - 1] - Z[0] + 1.2;
+      function longBeam(x, y, h, d, mat) {
+        const m = beam(spanZ, h, d, mat);
+        m.rotation.y = Math.PI / 2;
+        m.position.set(x, y, 0);
+        g.add(m);
+      }
+      longBeam(-HALF, FOOT, 0.3, 0.3, woodDark);
+      longBeam( HALF, FOOT, 0.3, 0.3, woodDark);
+      longBeam(0, RISE - 0.02, 0.26, 0.26, woodDark);
+      const px = -HALF * 0.5, py = FOOT + RISE * 0.5;
+      longBeam(px, py + 0.15, 0.22, 0.22);
+      longBeam(-px, py + 0.15, 0.22, 0.22);
+
+      const slopeLen = Math.hypot(HALF, RISE);
+      const overhang = 0.7;
+      const nChev = opts.chevrons || 8;
+      for (const s of [-1, 1]) {
+        const dx = (s * HALF) / slopeLen, dy = -RISE / slopeLen;
+        const nx = -dy, ny = dx;
+        const L = slopeLen + overhang;
+        const cx = dx * (L / 2) + nx * 0.16;
+        const cy = RISE + dy * (L / 2) + ny * 0.16;
+        for (let i = 0; i < nChev; i++) {
+          const cz = Z[0] - 0.4 + (i / (nChev - 1)) * (spanZ - 0.4);
+          const c = beam(L, 0.12, 0.15, chevMat);
+          c.position.set(cx, cy, cz);
+          c.rotation.z = Math.atan2(dy, dx);
+          g.add(c);
+        }
+      }
+
+      return {
+        group: g, name: 'Ferme à poinçon',
+        target: new THREE.Vector3(0, RISE * 0.45, 0),
+        dist: opts.dist || 15, phi: opts.phi || 1.12, theta: 0.7
+      };
     }
 
-    scene.add(truss);
+    /* ========== Modèle 2 : assemblage tenon-mortaise ========== */
+    function buildAssemblage() {
+      const g = new THREE.Group();
+
+      // poteau vertical (section 1 x 1), percé d'une mortaise traversante
+      const H = 4.4, MY0 = 2.0, MY1 = 2.8;       // hauteur de la mortaise
+      box(g, 1, MY0, 1, 0, MY0 / 2, 0, woodLight);                       // fût sous la mortaise
+      box(g, 1, H - MY1, 1, 0, (H + MY1) / 2, 0, woodLight);             // fût au-dessus
+      box(g, 1, MY1 - MY0, 0.34, 0, (MY0 + MY1) / 2,  0.33, woodLight);  // joue avant
+      box(g, 1, MY1 - MY0, 0.34, 0, (MY0 + MY1) / 2, -0.33, woodLight);  // joue arrière
+
+      // traverse horizontale qui vient s'emboîter, tenon traversant + about débordant
+      const beamY = 2.4;
+      box(g, 4, 0.85, 0.85, -2.5, beamY, 0, woodDark);   // corps de la traverse
+      box(g, 1.9, 0.5, 0.32, 0.45, beamY, 0, woodDark);  // tenon (traverse la mortaise et dépasse)
+
+      // cheville qui bloque l'assemblage (dépasse en haut et en bas)
+      const peg = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 1.5, 14), pegMat);
+      peg.castShadow = true; peg.receiveShadow = true;
+      peg.position.set(0.62, beamY, 0);
+      g.add(peg);
+
+      return {
+        group: g, name: 'Tenon-mortaise',
+        target: new THREE.Vector3(0, beamY + 0.1, 0),
+        dist: 10.5, phi: 1.22, theta: 0.72
+      };
+    }
+
+    /* ========== Modèle 3 : pan de bois (colombage) ========== */
+    function buildColombage() {
+      const g = new THREE.Group();
+      const W = 3, TOP = 4;
+
+      // remplissage (torchis) légèrement en retrait
+      box(g, W, TOP, 0.18, -W / 2, TOP / 2, -0.12, plasterMat);
+      box(g, W, TOP, 0.18,  W / 2, TOP / 2, -0.12, plasterMat);
+
+      // sablières haute et basse
+      member(g, -W, 0, W, 0, 0.34, 0.42, woodDark);
+      member(g, -W, TOP, W, TOP, 0.34, 0.42, woodDark);
+      // poteaux
+      member(g, -W, 0, -W, TOP, 0.34, 0.4, woodLight);
+      member(g,  0, 0,  0, TOP, 0.34, 0.4, woodLight);
+      member(g,  W, 0,  W, TOP, 0.34, 0.4, woodLight);
+      // décharges (écharpes) en V
+      member(g, -W, 0, 0, TOP, 0.26, 0.3, woodLight);
+      member(g,  W, 0, 0, TOP, 0.26, 0.3, woodLight);
+      // tournisses (petits bois horizontaux)
+      member(g, -W, TOP * 0.5, 0, TOP * 0.5, 0.2, 0.28, woodLight);
+      member(g,  0, TOP * 0.5, W, TOP * 0.5, 0.2, 0.28, woodLight);
+
+      return {
+        group: g, name: 'Pan de bois',
+        target: new THREE.Vector3(0, TOP * 0.5, 0),
+        dist: 13.5, phi: 1.28, theta: 0.62
+      };
+    }
+
+    const BUILDERS = [buildFerme, buildAssemblage, buildColombage];
+    let modelIndex = Math.min(opts.model || 0, BUILDERS.length - 1);
+    let current = null, currentName = '';
+
+    function disposeGroup(g) {
+      g.traverse((o) => { if (o.geometry) o.geometry.dispose(); });
+    }
+
+    function setModel(i, keepAngle) {
+      modelIndex = ((i % BUILDERS.length) + BUILDERS.length) % BUILDERS.length;
+      if (current) { scene.remove(current); disposeGroup(current); }
+      const m = BUILDERS[modelIndex]();
+      current = m.group;
+      currentName = m.name;
+      scene.add(current);
+      view.target.copy(m.target);
+      view.dist = m.dist;
+      view.phi = m.phi;
+      if (!keepAngle) view.theta = m.theta;
+      autol = true;
+      render();
+    }
+
+    function getLabel() { return currentName; }
 
     // ---- Interaction ----
     if (interactive) {
@@ -128,14 +231,14 @@ window.Charpente3D = (function () {
       canvas.addEventListener('pointerup', () => { dragging = false; });
       canvas.addEventListener('pointermove', (e) => {
         if (!dragging) return;
-        camTheta -= (e.clientX - mx) * 0.008;
-        camPhi = Math.max(0.35, Math.min(1.5, camPhi - (e.clientY - my) * 0.006));
+        view.theta -= (e.clientX - mx) * 0.008;
+        view.phi = Math.max(0.35, Math.min(1.5, view.phi - (e.clientY - my) * 0.006));
         mx = e.clientX; my = e.clientY;
       });
       if (opts.wheelZoom) {
         canvas.addEventListener('wheel', (e) => {
           e.preventDefault();
-          camDist = Math.max(8, Math.min(26, camDist + Math.sign(e.deltaY) * 1.1));
+          view.dist = Math.max(6, Math.min(28, view.dist + Math.sign(e.deltaY) * 1.1));
         }, { passive: false });
       }
     }
@@ -151,16 +254,15 @@ window.Charpente3D = (function () {
       }
     }
 
-    const target = new THREE.Vector3(0, RISE * 0.45, 0);
     function render() {
       resize();
-      if (autol && !reduce) camTheta += autoSpeed;
+      if (autol && !reduce) view.theta += autoSpeed;
       camera.position.set(
-        camDist * Math.sin(camPhi) * Math.sin(camTheta),
-        camDist * Math.cos(camPhi),
-        camDist * Math.sin(camPhi) * Math.cos(camTheta)
+        view.dist * Math.sin(view.phi) * Math.sin(view.theta),
+        view.dist * Math.cos(view.phi),
+        view.dist * Math.sin(view.phi) * Math.cos(view.theta)
       );
-      camera.lookAt(target);
+      camera.lookAt(view.target);
       renderer.render(scene, camera);
     }
 
@@ -181,9 +283,15 @@ window.Charpente3D = (function () {
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) stop(); else start();
     });
-    render(); // première image fixe même à l'arrêt
 
-    return { start, stop, render };
+    setModel(modelIndex, true);   // construit le premier modèle + première image
+
+    return {
+      start, stop, render, setModel, getLabel,
+      count: BUILDERS.length,
+      next: () => setModel(modelIndex + 1),
+      prev: () => setModel(modelIndex - 1)
+    };
   }
 
   return { create };

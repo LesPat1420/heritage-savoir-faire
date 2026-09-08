@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/atelier.css?v=4">
+<link rel="stylesheet" href="assets/css/atelier.css?v=5">
 <link rel="stylesheet" href="assets/css/lightbox.css?v=3">
 <script>document.documentElement.className = 'js';</script>
 </head>
@@ -60,14 +60,14 @@
       <div class="hero-badge">
         <div class="hero-badge-mark">
           <img src="assets/img/logo-original.jpg" alt="" class="hero-logo">
-          <svg class="stamp" viewBox="0 0 240 240" aria-hidden="true">
-            <defs><path id="circ" d="M120,120 m-92,0 a92,92 0 1,1 184,0 a92,92 0 1,1 -184,0"/></defs>
-            <text><textPath href="#circ" startOffset="0">· BOIS · CHARPENTE · TRANSMISSION · MORVAN &nbsp;</textPath></text>
-          </svg>
         </div>
         <div class="hero-3d" id="hero-3d">
           <canvas id="hero-charpente" aria-hidden="true"></canvas>
-          <span class="hero-3d-hint">glissez pour tourner</span>
+          <div class="hero-3d-nav">
+            <button class="hero-3d-arrow" type="button" data-dir="prev" aria-label="Modèle précédent">‹</button>
+            <span class="hero-3d-label">Ferme à poinçon</span>
+            <button class="hero-3d-arrow" type="button" data-dir="next" aria-label="Modèle suivant">›</button>
+          </div>
         </div>
       </div>
     </div>
@@ -307,17 +307,24 @@
 <script src="assets/js/projets.js?v=1" defer></script>
 <script src="assets/js/galerie.js?v=2" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="assets/js/charpente3d.js?v=2" defer></script>
+<script src="assets/js/charpente3d.js?v=3" defer></script>
 <script>
   window.addEventListener('load', function () {
     var box = document.getElementById('hero-3d');
     var c = document.getElementById('hero-charpente');
     if (!box || !c) return;
-    if (window.Charpente3D && window.Charpente3D.create(c, { interactive: true, dist: 15, phi: 1.12, autoSpeed: 0.0016 })) {
-      box.classList.add('is-3d');
-    } else {
-      box.style.display = 'none';
-    }
+    var api = window.Charpente3D && window.Charpente3D.create(c, { interactive: true, autoSpeed: 0.0016 });
+    if (!api) { box.style.display = 'none'; return; }
+    box.classList.add('is-3d');
+    var label = box.querySelector('.hero-3d-label');
+    function sync() { if (label) label.textContent = api.getLabel(); }
+    sync();
+    box.querySelectorAll('.hero-3d-arrow').forEach(function (b) {
+      b.addEventListener('click', function () {
+        b.dataset.dir === 'prev' ? api.prev() : api.next();
+        sync();
+      });
+    });
   });
 </script>
 </body>
