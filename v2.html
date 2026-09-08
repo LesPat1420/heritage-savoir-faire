@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/atelier.css?v=3">
-<link rel="stylesheet" href="assets/css/lightbox.css?v=2">
+<link rel="stylesheet" href="assets/css/atelier.css?v=4">
+<link rel="stylesheet" href="assets/css/lightbox.css?v=3">
 <script>document.documentElement.className = 'js';</script>
 </head>
 <body>
@@ -58,11 +58,17 @@
         </div>
       </div>
       <div class="hero-badge">
-        <img src="assets/img/logo-original.jpg" alt="" class="hero-logo">
-        <svg class="stamp" viewBox="0 0 240 240" aria-hidden="true">
-          <defs><path id="circ" d="M120,120 m-92,0 a92,92 0 1,1 184,0 a92,92 0 1,1 -184,0"/></defs>
-          <text><textPath href="#circ" startOffset="0">· BOIS · CHARPENTE · TRANSMISSION · MORVAN &nbsp;</textPath></text>
-        </svg>
+        <div class="hero-badge-mark">
+          <img src="assets/img/logo-original.jpg" alt="" class="hero-logo">
+          <svg class="stamp" viewBox="0 0 240 240" aria-hidden="true">
+            <defs><path id="circ" d="M120,120 m-92,0 a92,92 0 1,1 184,0 a92,92 0 1,1 -184,0"/></defs>
+            <text><textPath href="#circ" startOffset="0">· BOIS · CHARPENTE · TRANSMISSION · MORVAN &nbsp;</textPath></text>
+          </svg>
+        </div>
+        <div class="hero-3d" id="hero-3d">
+          <canvas id="hero-charpente" aria-hidden="true"></canvas>
+          <span class="hero-3d-hint">glissez pour tourner</span>
+        </div>
       </div>
     </div>
     <svg class="divider divider-bottom" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C120,6 220,40 340,22 C460,4 560,40 680,22 C800,6 900,40 1020,22 C1100,10 1160,16 1200,22 L1200,44 L0,44 Z"/></svg>
@@ -86,7 +92,7 @@
 
         <article class="dish">
           <div class="dish-ico">
-            <svg viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 46h34l-6-24-11-9-11 9z"/><path d="M18 46V33h12v13"/><circle cx="47" cy="24" r="9"/><path d="M53 30l6 6"/></g></svg>
+            <img src="assets/img/cartes/expertise.jpg" alt="Lou et une agente immobilière examinant la charpente d'une maison" loading="lazy">
           </div>
           <div class="dish-txt">
             <h3>Un avis d'expert avant d'acheter ou de vendre</h3>
@@ -102,7 +108,7 @@
 
         <article class="dish">
           <div class="dish-ico">
-            <svg viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8h28l8 8v40H14z"/><path d="M22 22h20M22 32h20M22 42h12"/><path d="M44 46l10 10 6-16z"/></g></svg>
+            <img src="assets/img/cartes/plans.jpg" alt="Lou présentant plans, feuille de débit et pré-commande à un client" loading="lazy">
           </div>
           <div class="dish-txt">
             <h3>Vos plans et vos bois, si vous faites les travaux vous-même</h3>
@@ -118,7 +124,7 @@
 
         <article class="dish">
           <div class="dish-ico">
-            <svg viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="30" height="40" rx="2"/><path d="M20 22h14M20 30h14M20 38h10"/><path d="M42 34l12 4-6 8-8-4z"/><path d="M48 8v10M43 13h10"/></g></svg>
+            <img src="assets/img/cartes/mairie.jpg" alt="Lou et un client devant un organigramme de démarches d'urbanisme" loading="lazy">
           </div>
           <div class="dish-txt">
             <h3>Le dossier de mairie, je m'en occupe</h3>
@@ -128,14 +134,13 @@
               nouvelle teinte de toit, Velux, lucarne, petite extension. Je monte le
               dossier, je le dépose, je suis la réponse.
             </p>
-            <img class="dish-photo" src="assets/img/realisations/_mairie.jpg" alt="Plan et pièces d'un dossier d'urbanisme prêt à déposer" loading="lazy">
             <a class="talk" href="#ecrire">On en parle →</a>
           </div>
         </article>
 
         <article class="dish">
           <div class="dish-ico">
-            <svg viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10l-8 40M20 10l8 40M12 40h16"/><circle cx="20" cy="10" r="4"/><path d="M40 12l12 20a7 7 0 01-12 0z"/><path d="M46 32v18"/></g></svg>
+            <img src="assets/img/cartes/formation.jpg" alt="Lou montrant un tracé d'épure à un apprenti sur une pièce de bois" loading="lazy">
           </div>
           <div class="dish-txt">
             <h3>Le trait et le calcul de charge, je les transmets</h3>
@@ -145,7 +150,6 @@
               lecture de plan, dimensionnement, vérification de l'ouvrage. En renfort d'un
               centre de formation ou aux côtés d'un patron.
             </p>
-            <img class="dish-photo" src="assets/img/realisations/_accompagnement.jpg" alt="Lou expliquant un tracé de charpente à quelqu'un sur un chantier" loading="lazy">
             <a class="talk" href="#ecrire">On en parle →</a>
           </div>
         </article>
@@ -160,8 +164,8 @@
   <section class="section section-wood" id="histoire">
     <div class="wrap histoire-grid">
       <div class="polaroid polaroid-tilt-l">
-        <img class="polaroid-img" src="assets/img/realisations/_histoire.jpg" alt="Maison à toiture bois courbe montée par Lou, sa camionnette au premier plan" loading="lazy" width="1500" height="1125">
-        <p class="polaroid-cap">Une maison montée du sol au faîtage</p>
+        <img class="polaroid-img" style="aspect-ratio:4/5" src="assets/img/portrait-lou.jpg" alt="Lou François sur un chantier d'ossature bois, une panne sur l'épaule" loading="lazy" width="1097" height="1200">
+        <p class="polaroid-cap">Lou François, sur le chantier</p>
       </div>
       <div class="histoire-txt">
         <p class="kicker">Mon histoire</p>
@@ -302,5 +306,19 @@
 <script src="assets/js/atelier.js"></script>
 <script src="assets/js/projets.js?v=1" defer></script>
 <script src="assets/js/galerie.js?v=2" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="assets/js/charpente3d.js?v=2" defer></script>
+<script>
+  window.addEventListener('load', function () {
+    var box = document.getElementById('hero-3d');
+    var c = document.getElementById('hero-charpente');
+    if (!box || !c) return;
+    if (window.Charpente3D && window.Charpente3D.create(c, { interactive: true, dist: 15, phi: 1.12, autoSpeed: 0.0016 })) {
+      box.classList.add('is-3d');
+    } else {
+      box.style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>

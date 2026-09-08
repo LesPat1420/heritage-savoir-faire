@@ -183,16 +183,14 @@ img.shot-img{ width:100%; height:auto; object-fit:cover; display:block; }
 .shot .shot-open img{ border:0; border-radius:0; }
 .shot figcaption{ font-size:.98rem; color:var(--ink-soft); margin-top:.6rem; }
 
-/* photo d'ouverture de section (parcours) */
+/* portrait de Lou (parcours) */
 .parcours-photo{
-  display:block; width:100%; aspect-ratio:16/9; object-fit:cover;
-  border-radius:5px; border:1px solid var(--line); margin:0 0 2.4rem;
-  box-shadow:var(--shadow);
+  float:right; width:264px; height:330px; object-fit:cover; object-position:center 20%;
+  border-radius:5px; border:1px solid var(--line); margin:.4rem 0 1.2rem 2rem;
+  box-shadow:var(--shadow); shape-outside:inset(0 round 5px);
 }
-/* petite photo au pied d'une carte prestation */
-.card-photo{
-  display:block; width:100%; aspect-ratio:3/2; object-fit:cover;
-  border-radius:4px; margin:.4rem 0 1.1rem;
+@media (max-width:600px){
+  .parcours-photo{ float:none; width:100%; max-width:264px; height:300px; margin:0 0 1.6rem; }
 }
 
 /* ---------- Cartes prestations ---------- */
@@ -201,7 +199,10 @@ img.shot-img{ width:100%; height:auto; object-fit:cover; display:block; }
   background:var(--paper); border:1px solid var(--line); border-radius:5px;
   padding:1.9rem; box-shadow:var(--shadow);
 }
-.card-icon{ width:44px; height:44px; color:var(--forest); margin-bottom:1rem; }
+.card-icon{
+  display:block; width:100%; aspect-ratio:16/10; object-fit:cover;
+  border-radius:4px; border:1px solid var(--line); margin:0 0 1.2rem;
+}
 .card h3{ font-family:var(--roman); font-weight:500; font-size:1.16rem; margin:0 0 .3rem; }
 .card-for{ font-family:var(--sans); font-size:.82rem; color:var(--wood-dark); margin:0 0 .9rem; }
 .card p{ margin:0 0 .9rem; color:var(--ink-soft); }

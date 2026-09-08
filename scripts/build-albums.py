@@ -144,11 +144,10 @@ ALBUMS = [
   ]),
 ]
 
-# ---- images "isolées" pour les cartes de service / l'histoire
+# ---- portrait de Lou (section « Mon histoire », les 3 maquettes)
+#      écrit dans assets/img/ (hors DST, non purgé par le rmtree)
 SINGLES = {
- "histoire":   (S("facade cotée entrée.JPG"), 1500),
- "accompagnement": (D("Formation accompagnement.JPG"), 1400),
- "mairie":     (D("Mairie.png"), 1400),
+ "portrait-lou": (D("lou francois.png"), 1200),
 }
 
 def opt(src, dst, edge, q=74):
@@ -181,9 +180,9 @@ for aid, titre, resume, photos in ALBUMS:
 for name, (src, edge) in SINGLES.items():
     if not os.path.exists(src):
         print("!! single manquant:", src); continue
-    sz, dim = opt(src, os.path.join(DST, f"_{name}.jpg"), edge, q=78)
+    sz, dim = opt(src, os.path.join(PROJ, "assets/img", f"{name}.jpg"), edge, q=82)
     total += sz
-    print(f"_{name:12s} {dim}")
+    print(f"{name:14s} {dim}")
 
 js = "/* Généré — chantiers de Lou François. photos[0] = couverture. */\n"
 js += "window.PROJETS = " + json.dumps(data, ensure_ascii=False, indent=1) + ";\n"

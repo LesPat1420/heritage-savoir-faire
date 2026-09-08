@@ -26,8 +26,12 @@ assets/js/              main.js · atelier.js · charpente3d.js
                         projets.js  (données des albums chantiers — généré)
                         galerie.js  (visionneuse commune aux 3 maquettes)
 assets/img/realisations/   photos réelles, un dossier par chantier (00.jpg = couverture)
-                           + _histoire / _mairie / _accompagnement (images de section)
+assets/img/cartes/         illustrations des 4 cartes de prestation (expertise, plans,
+                           mairie, formation) — remplacent les anciens pictos SVG
+assets/img/portrait-lou.jpg  portrait de Lou (section « Mon histoire », les 3 maquettes)
 assets/img/             logo (original JPG + PNG détouré approximatif)
+.nojekyll               désactive Jekyll sur GitHub Pages (sinon les fichiers/dossiers
+                        commençant par « _ » sont exclus du site → 404)
 ```
 
 ### Galerie chantiers
@@ -61,9 +65,10 @@ Les textes actuels sont **provisoires et inventés** pour donner à voir le rend
   Corse) ; à préciser avec Lou.
 - **Contact** : créer l'adresse `contact@heritage-savoir-faire.fr` (ou autre),
   confirmer l'adresse postale (Saulieu / Alligny-en-Morvan).
-- **Portrait de Lou** : aucune photo de Lou seul pour l'instant ; les sections
-  « histoire » utilisent une photo de chantier (maison à toit courbe). Sur cette
-  photo, l'ancienne adresse/tél d'entreprise sur la camionnette a été floutée.
+- **Portrait de Lou** : `assets/img/portrait-lou.jpg` (fourni par l'utilisateur) est
+  utilisé dans les sections « Mon histoire » des 3 maquettes.
+- **Cartes de prestation** : illustrations `assets/img/cartes/*.jpg` (fournies,
+  style BD) à la place des pictogrammes ; à valider avec Lou.
 - **Logo** : fournir si possible une version PNG fond transparent + SVG.
 - **Mentions légales** : à compléter dès l'immatriculation (SIRET, assurance RC pro,
   médiateur de la consommation, hébergeur).
