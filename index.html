@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>L'Héritage d'un savoir-faire — 3 maquettes au choix</title>
-<meta name="description" content="Trois directions graphiques pour le site de Lou François. Cliquez sur une colonne pour explorer la version.">
+<title>L'Héritage d'un savoir-faire — 4 maquettes au choix</title>
+<meta name="description" content="Quatre directions graphiques pour le site de Lou François. Cliquez sur une colonne pour explorer la version.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="assets/img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -72,6 +72,15 @@
   .c-almanach .rule{ display:flex; align-items:center; gap:.7rem; margin-bottom:1.1rem; font-size:1.2rem; }
   .c-almanach .rule::before,.c-almanach .rule::after{ content:""; width:34px; height:2px; background:currentColor; }
 
+  /* --- Colonne 4 : Cabinet & atelier --- */
+  .c-cabatelier{ background:#f3e8ce; color:#221b11; box-shadow:inset 0 0 0 3px #2f4030; }
+  .c-cabatelier .style-name{ font-family:"Fraunces",serif; font-weight:600; font-size:clamp(1.55rem,3.3vw,2.3rem); }
+  .c-cabatelier .num{ color:#9c3a22; }
+  .c-cabatelier .desc{ font-family:"Spectral","EB Garamond",serif; }
+  .c-cabatelier .art{ background:
+      linear-gradient(#cbb98d 1px,transparent 1px) 0 0/100% 24px,
+      linear-gradient(90deg,#cbb98d 1px,transparent 1px) 0 0/24px 100%; opacity:.55; }
+
   @media (max-width:760px){
     .chooser{ flex-direction:column; }
     .col{ min-height:60svh; }
@@ -111,6 +120,14 @@
     <span class="num">Version 3</span>
     <p class="style-name"><span class="rule">✦</span>Almanach<br>imprimé</p>
     <p class="desc">Une affiche ancienne. Symétrique, dense, un brin solennel.</p>
+    <span class="go">Découvrir →</span>
+  </a>
+
+  <a class="col c-cabatelier" href="v4.html" aria-label="Version 4 — Cabinet & atelier">
+    <span class="art" aria-hidden="true"></span>
+    <span class="num">Version 4</span>
+    <p class="style-name">Cabinet<br>&amp; atelier</p>
+    <p class="desc">La grille carrée de la 1, les couleurs de la 3, le ton direct de la 2.</p>
     <span class="go">Découvrir →</span>
   </a>
 
