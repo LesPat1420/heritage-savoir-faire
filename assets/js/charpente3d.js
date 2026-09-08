@@ -200,51 +200,51 @@ window.Charpente3D = (function () {
       };
     }
 
-    /* ========== Modèle 4 : assemblage moisé, poutre à about façonné ==========
-       d'après une photo d'atelier de Lou : une pièce claire à l'about galbé,
-       moisée sur une poutre ancienne au-dessus d'un poteau, bloquée par une cheville */
+    /* ========== Modèle 4 : une seule poutre, taillée ==========
+       d'après une photo d'atelier de Lou : UNE poutre équarrie, dont on a
+       taillé (1) un about évasé « en trompette » (galbe concave sous la pièce,
+       dessus plat, pied large) et (2) une entaille à mi-bois en travers du
+       dessus, sur toute la largeur, pour recevoir une pièce croisée.
+       Le corps neuf est clair, la partie ancienne au-delà de l'entaille est grise. */
     function buildMoise() {
       const g = new THREE.Group();
 
-      // --- pièce claire à about façonné (profil extrudé) ---
-      const th = 0.9;
-      const p = new THREE.Shape();
-      p.moveTo(-4.8, -0.55);
-      p.lineTo(0, -0.55);
-      p.quadraticCurveTo(1.0, -0.40, 1.75, -1.45);   // galbe bas
-      p.lineTo(2.10, -1.30);
-      p.lineTo(2.10, 1.30);                           // about
-      p.lineTo(1.75, 1.45);
-      p.quadraticCurveTo(1.0, 0.40, 0, 0.55);         // galbe haut
-      p.lineTo(-4.8, 0.55);
-      p.closePath();
-      const pg = new THREE.ExtrudeGeometry(p, {
-        depth: th, bevelEnabled: true, bevelThickness: 0.04, bevelSize: 0.04, bevelSegments: 1, curveSegments: 22
+      const W = 1.6;                 // largeur de la poutre (axe Z)
+
+      // --- profil latéral de la zone taillée (about + entaille), extrudé sur W ---
+      const s = new THREE.Shape();
+      s.moveTo(0.16, 0.36);                                   // nez de l'about évasé
+      s.quadraticCurveTo(0.75, 0.56, 1.75, 0.62);             // dessus qui remonte du nez au corps
+      s.lineTo(3.15, 0.66);                                   // dessus jusqu'à l'entaille
+      s.lineTo(3.18, 0.02);                                   // joue avant de l'entaille (verticale)
+      s.lineTo(5.55, 0.00);                                   // fond de l'entaille (mi-hauteur)
+      s.lineTo(5.62, 0.70);                                   // joue arrière de l'entaille
+      s.lineTo(5.62, -0.58);                                  // about de raccord (contre la partie grise)
+      s.lineTo(1.35, -0.58);                                  // dessous du corps : droit sur presque toute la longueur
+      s.quadraticCurveTo(0.92, -0.78, 0.74, -1.22);           // galbe concave, serré près de la pointe...
+      s.quadraticCurveTo(0.58, -1.52, 0.42, -1.60);           // ...jusqu'au pied évasé
+      s.lineTo(0.16, -1.62);                                  // méplat du pied
+      s.lineTo(0.16, 0.36);                                   // grande face d'about verticale
+      s.closePath();
+
+      const eg = new THREE.ExtrudeGeometry(s, {
+        depth: W, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.05, bevelSegments: 1, curveSegments: 26
       });
-      pg.translate(0, 0, -th / 2);
-      const piece = new THREE.Mesh(pg, woodPale);
-      piece.castShadow = true; piece.receiveShadow = true;
-      piece.position.y = 0.55;                        // le dessous droit repose à y=0
-      g.add(piece);
+      eg.translate(0, 0, -W / 2);
+      const worked = new THREE.Mesh(eg, woodPale);
+      worked.castShadow = true; worked.receiveShadow = true;
+      g.add(worked);
 
-      // --- poutre ancienne transversale (moisée), avec logement ---
-      box(g, 0.95, 1.05, 6.4, -1.2, -0.55, 0, woodAged);                 // corps
-      box(g, 0.95, 0.55, 2.55, -1.2, 0.25,  1.95, woodAged);             // joue av.
-      box(g, 0.95, 0.55, 2.55, -1.2, 0.25, -1.95, woodAged);             // joue arr.
+      // --- prolongement ancien (gris), au-delà de l'entaille ---
+      box(g, 4.6, 1.29, W, 7.9, 0.075, 0, woodAged);
 
-      // --- poteau ---
-      box(g, 1.15, 3.2, 1.15, -1.2, -2.62, 0, woodLight);
-
-      // --- cheville ---
-      const peg = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 2.4, 12), pegMat);
-      peg.castShadow = true; peg.receiveShadow = true;
-      peg.position.set(-1.2, 0.15, 0);
-      g.add(peg);
+      // recentrage : la zone d'intérêt est vers x = 0..6
+      g.position.x = -3.1;
 
       return {
-        group: g, name: 'Assemblage moisé',
-        target: new THREE.Vector3(-0.5, -0.15, 0),
-        dist: 12, phi: 1.18, theta: 0.6
+        group: g, name: 'Croisement à mi-bois',
+        target: new THREE.Vector3(0, -0.25, 0),
+        dist: 12.5, phi: 1.22, theta: 0.72
       };
     }
 

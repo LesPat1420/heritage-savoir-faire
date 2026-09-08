@@ -148,17 +148,31 @@ a{ color:var(--brick); text-underline-offset:2px; }
 img.shot-img{ width:100%; height:clamp(150px,17vw,190px); object-fit:cover; display:block; }
 .shot figcaption{ font-family:var(--label); text-transform:uppercase; letter-spacing:.05em; font-size:.72rem; color:var(--forest); margin-top:.7rem; line-height:1.35; }
 
-/* ---------- Comment ça se passe ---------- */
-.steps{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); border:2px solid var(--ink); background:var(--card); }
-.steps li{ padding:1.7rem 1.4rem; border-right:2px solid var(--ink); }
-.steps li:last-child{ border-right:0; }
+/* ---------- Comment ça se passe (une suite, reliée par des flèches) ---------- */
+.steps{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:2.6rem; }
+.steps li{ position:relative; background:var(--card); border:2px solid var(--ink); box-shadow:5px 5px 0 var(--ink); padding:1.7rem 1.4rem; }
+/* le trait de liaison + la pointe de flèche vers l'étape suivante */
+.steps li:not(:last-child)::before{
+  content:""; position:absolute; top:50%; right:-2.6rem; width:2.6rem; height:3px;
+  background:var(--brick); transform:translateY(-50%); z-index:2;
+}
+.steps li:not(:last-child)::after{
+  content:""; position:absolute; top:50%; right:-2.6rem; width:.7rem; height:.7rem;
+  border-top:3px solid var(--brick); border-right:3px solid var(--brick);
+  transform:translate(35%,-50%) rotate(45deg); z-index:2;
+}
 .steps .num{ font-family:var(--display); font-weight:600; font-size:1.6rem; color:var(--brick); display:block; line-height:1; }
 .steps h3{ font-family:var(--label); font-weight:600; text-transform:uppercase; letter-spacing:.08em; font-size:.95rem; margin:.5rem 0 .5rem; }
 .steps p{ margin:0; color:var(--ink-soft); font-size:1rem; }
 
 /* ---------- Zone ---------- */
+.zone-layout{ display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(2rem,5vw,3.6rem); align-items:start; }
 .zone-list{ list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:.7rem; font-family:var(--label); text-transform:uppercase; letter-spacing:.06em; font-size:.78rem; }
 .zone-list li{ border:2px solid var(--ink); padding:.4rem 1rem; background:var(--card); }
+.zone-map{ margin:0; border:2px solid var(--ink); box-shadow:6px 6px 0 var(--ink); background:var(--card); }
+.zone-map iframe{ display:block; width:100%; height:360px; border:0; }
+.zone-map figcaption{ font-family:var(--label); text-transform:uppercase; letter-spacing:.05em; font-size:.7rem; color:var(--ink-soft); padding:.6rem .8rem; border-top:2px solid var(--ink); }
+.zone-map figcaption a{ color:var(--brick); }
 
 /* ---------- Contact ---------- */
 .section-forest{ background:var(--forest); color:var(--paper); border-bottom:0; }
@@ -179,6 +193,11 @@ img.shot-img{ width:100%; height:clamp(150px,17vw,190px); object-fit:cover; disp
 .form-note{ font-size:.9rem; color:var(--ink-soft); margin:0 0 1.2rem; }
 .form-mini{ font-size:.85rem; color:var(--ink-soft); margin:.9rem 0 0; }
 .contact-form .btn-primary{ box-shadow:4px 4px 0 var(--forest-2); }
+.form-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.form-status{ margin:.9rem 0 0; font-size:.92rem; font-family:var(--label); letter-spacing:.01em; }
+.form-status.is-ok{ color:var(--forest); font-weight:600; }
+.form-status.is-err{ color:var(--brick); }
+.form-status.is-err a{ color:var(--brick); }
 
 /* ---------- Pied ---------- */
 .site-footer{ background:var(--forest-2); color:#e7dcc0; padding:2.6rem 0; }
@@ -204,9 +223,14 @@ img.shot-img{ width:100%; height:clamp(150px,17vw,190px); object-fit:cover; disp
   .fiche{ position:static; }
   .cards{ grid-template-columns:1fr; }
   .gallery{ grid-template-columns:repeat(2,1fr); }
-  .steps{ grid-template-columns:1fr; }
-  .steps li{ border-right:0; border-bottom:2px solid var(--ink); }
-  .steps li:last-child{ border-bottom:0; }
+  .zone-layout{ grid-template-columns:1fr; }
+  .steps{ grid-template-columns:1fr; gap:2.8rem; }
+  .steps li:not(:last-child)::before{
+    top:auto; right:auto; bottom:-2.8rem; left:50%; width:3px; height:2.8rem; transform:translateX(-50%);
+  }
+  .steps li:not(:last-child)::after{
+    top:auto; right:auto; bottom:-2.8rem; left:50%; transform:translate(-50%,35%) rotate(135deg);
+  }
 }
 @media (max-width:720px){
   body{ font-size:1.05rem; }

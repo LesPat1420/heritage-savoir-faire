@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400&family=Oswald:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/v4.css?v=3">
+<link rel="stylesheet" href="assets/css/v4.css?v=4">
 <link rel="stylesheet" href="assets/css/lightbox.css?v=3">
 </head>
 <body>
@@ -236,19 +236,31 @@
 
   <!-- ================ ZONE ================ -->
   <section class="section" id="zone">
-    <div class="wrap">
-      <p class="section-kicker">Zone d'intervention</p>
-      <h2 class="section-title">Le Morvan pour base, la route pour le reste</h2>
-      <p class="section-intro">
-        Je suis installé dans le Morvan, mais trente ans de métier m'ont mené bien au-delà —
-        de la Bretagne à la Bourgogne, et jusqu'en Corse. Pour un chantier sur site, comptez
-        une petite heure de route autour de Saulieu ; plus loin, on en discute. Un chiffrage
-        sur plans, une expertise ou un dossier de mairie se traitent partout, à distance.
-      </p>
-      <ul class="zone-list">
-        <li>Côte-d'Or</li><li>Nièvre</li><li>Saône-et-Loire</li><li>Yonne</li>
-        <li>Parc du Morvan</li><li>Corse</li><li>Études &amp; démarches à distance</li>
-      </ul>
+    <div class="wrap zone-layout">
+      <div>
+        <p class="section-kicker">Zone d'intervention</p>
+        <h2 class="section-title">Le Morvan pour base, la route pour le reste</h2>
+        <p class="section-intro">
+          Je suis installé dans le Morvan, mais trente ans de métier m'ont mené bien au-delà —
+          de la Bretagne à la Bourgogne, et jusqu'en Corse. Pour un chantier sur site, comptez
+          une petite heure de route autour de Saulieu ; plus loin, on en discute. Un chiffrage
+          sur plans, une expertise ou un dossier de mairie se traitent partout, à distance.
+        </p>
+        <ul class="zone-list">
+          <li>Côte-d'Or</li><li>Nièvre</li><li>Saône-et-Loire</li><li>Yonne</li>
+          <li>Parc du Morvan</li><li>Corse</li><li>Études &amp; démarches à distance</li>
+        </ul>
+      </div>
+      <figure class="zone-map">
+        <iframe
+          title="Carte de la zone d'intervention autour de Saulieu, dans le Morvan"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=2.15%2C46.35%2C6.25%2C48.35&amp;layer=mapnik&amp;marker=47.2807%2C4.2306"
+          loading="lazy" referrerpolicy="no-referrer"></iframe>
+        <figcaption>
+          Base à Saulieu (Côte-d'Or) —
+          <a href="https://www.openstreetmap.org/?mlat=47.2807&amp;mlon=4.2306#map=9/47.28/4.23" target="_blank" rel="noopener">voir la carte en grand</a>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -268,12 +280,19 @@
           <li><span class="lbl">Adresse</span><span>2 chemin du Chatelot, 21210 Saulieu</span></li>
         </ul>
       </div>
-      <form class="contact-form" action="mailto:contact@heritage-savoir-faire.fr" method="post" enctype="text/plain">
-        <p class="form-note">Ce formulaire ouvre votre logiciel de messagerie avec le message prérempli. Un envoi automatique pourra être mis en place plus tard.</p>
+      <form class="contact-form" id="contact-form"
+            data-to="contact@heritage-savoir-faire.fr"
+            action="https://formsubmit.co/contact@heritage-savoir-faire.fr" method="POST">
+        <input type="hidden" name="_subject" value="Nouveau message depuis le site">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <label class="form-hp" aria-hidden="true">Ne pas remplir<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label>
+        <p class="form-note">Votre message m'est envoyé directement par courriel. Rien à installer, aucun compte à créer.</p>
         <label>Votre nom<input type="text" name="nom" required></label>
         <label>Téléphone ou courriel<input type="text" name="coordonnees" required></label>
         <label>Votre projet<textarea name="message" rows="5" required></textarea></label>
         <button type="submit" class="btn btn-primary">Envoyer le message</button>
+        <p class="form-status" role="status" aria-live="polite" hidden></p>
         <p class="form-mini">Pas de cookies, pas de pistage.</p>
       </form>
     </div>
@@ -286,7 +305,8 @@
     <p class="footer-brand">L'Héritage d'un savoir-faire — Lou François</p>
     <p class="footer-legal">
       Entreprise individuelle (auto-entrepreneur) en cours d'immatriculation.
-      SIRET et mentions légales complètes à venir. Site sans collecte de données ni cookies.
+      SIRET et mentions légales complètes à venir. Site sans cookie ni traceur publicitaire ;
+      carte fournie par OpenStreetMap.
     </p>
     <a href="#haut" class="footer-top">Haut de page ↑</a>
   </div>
@@ -298,7 +318,7 @@
 <script src="assets/js/projets.js?v=1" defer></script>
 <script src="assets/js/galerie.js?v=2" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="assets/js/charpente3d.js?v=4" defer></script>
+<script src="assets/js/charpente3d.js?v=5" defer></script>
 <script>
   window.addEventListener('load', function () {
     var box = document.getElementById('hero-3d');
@@ -317,6 +337,37 @@
       });
     });
   });
+</script>
+<script>
+  /* Formulaire de contact : envoi par courriel via FormSubmit, sans rechargement.
+     Si le JS est indisponible, le <form action> assure le repli. */
+  (function () {
+    var f = document.getElementById('contact-form');
+    if (!f || !window.fetch) return;
+    var status = f.querySelector('.form-status');
+    var to = f.getAttribute('data-to');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = f.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      status.hidden = false;
+      status.className = 'form-status';
+      status.textContent = 'Envoi en cours…';
+      fetch('https://formsubmit.co/ajax/' + encodeURIComponent(to), {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(f)
+      }).then(function (r) { return r.json(); }).then(function (r) {
+        if (!r || (r.success !== 'true' && r.success !== true)) throw new Error('ko');
+        f.reset();
+        status.className = 'form-status is-ok';
+        status.textContent = 'Merci, votre message est parti. Je vous réponds vite.';
+      }).catch(function () {
+        status.className = 'form-status is-err';
+        status.innerHTML = "L'envoi a échoué. Écrivez-moi à <a href=\"mailto:" + to + '">' + to + '</a> ou au 06 32 90 49 41.';
+      }).then(function () { btn.disabled = false; });
+    });
+  })();
 </script>
 </body>
 </html>
