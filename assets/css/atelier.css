@@ -137,6 +137,13 @@ main{ overflow:hidden; }
 .who{ font-family:var(--hand); font-size:1.3rem; color:var(--brick); margin:0 0 .5rem; }
 .dish-txt p:not(.who){ color:var(--ink-2); margin:0 0 .7rem; }
 .talk{ font-family:var(--disp); font-weight:600; color:var(--wood-2); text-decoration:none; border-bottom:2px solid var(--honey); }
+.dish-photo{
+  display:block; width:100%; max-width:340px; aspect-ratio:3/2; object-fit:cover;
+  border:1px solid var(--line); box-shadow:4px 5px 12px rgba(59,42,25,.2);
+  margin:.2rem 0 1rem;
+}
+.dish:nth-child(even) .dish-photo{ margin-left:auto; }
+@media (max-width:640px){ .dish:nth-child(even) .dish-photo{ margin-left:0; } }
 .price-note{ font-family:var(--hand); font-size:1.4rem; text-align:center; color:var(--wood-2); margin:2.6rem auto 0; max-width:40ch; }
 
 /* ---------- Polaroids ---------- */

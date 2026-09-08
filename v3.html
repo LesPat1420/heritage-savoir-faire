@@ -12,7 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Oswald:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/v3.css?v=2">
+<link rel="stylesheet" href="assets/css/v3.css?v=3">
+<link rel="stylesheet" href="assets/css/lightbox.css?v=2">
 </head>
 <body>
 
@@ -96,18 +97,20 @@
               150&nbsp;m² — abri de jardin, changement de teinte ou de matériau de toiture,
               création de Velux ou de lucarne, extension légère.
             </p>
+            <img class="entry-photo" src="assets/img/realisations/_mairie.jpg" alt="Plan et pièces d'un dossier d'urbanisme" loading="lazy">
           </div>
         </div>
         <div class="entry">
           <span class="rn">iv</span>
           <div>
-            <h4>Formation au trait &amp; au calcul de charge</h4>
+            <h4>Formation &amp; accompagnement — trait et calcul de charge</h4>
             <p class="pour">Pour les apprentis charpente bois — CAP, BEP, BP</p>
             <p>
-              Séances pratiques à l'atelier : méthode d'épure, lecture de plan,
-              dimensionnement des pièces, contrôle de l'ouvrage. En renfort d'un centre de
-              formation ou à la demande d'un employeur.
+              Séances pratiques sur le chantier ou à l'atelier : méthode d'épure, lecture
+              de plan, dimensionnement des pièces, contrôle de l'ouvrage. En renfort d'un
+              centre de formation ou aux côtés d'un employeur.
             </p>
+            <img class="entry-photo" src="assets/img/realisations/_accompagnement.jpg" alt="Lou expliquant un tracé de charpente à quelqu'un sur un chantier" loading="lazy">
           </div>
         </div>
       </div>
@@ -121,15 +124,16 @@
       </div>
       <div class="about">
         <figure class="portrait">
-          <img class="portrait-img" src="assets/img/realisations/charpente-interieur.jpg" alt="Charpente en bois vue depuis l'intérieur du bâtiment" loading="lazy" width="1500" height="1125">
-          <figcaption class="portrait-cap">À l'atelier</figcaption>
+          <img class="portrait-img" src="assets/img/realisations/_histoire.jpg" alt="Maison à toiture bois courbe montée par Lou François, sa camionnette au premier plan" loading="lazy" width="1500" height="1125">
+          <figcaption class="portrait-cap">Une maison montée du sol au faîtage</figcaption>
         </figure>
         <div class="about-txt">
           <p>
-            Né dans le Morvan, entré en apprentissage à seize ans, CAP puis BP charpentier
-            bois. Les premières années sur les chantiers de maisons neuves et de bâtiments
-            agricoles de la région ; les suivantes consacrées à la restauration du bâti
-            ancien — fermes, longères, lavoirs, petites toitures d'église.
+            Entré en apprentissage à seize ans, CAP puis BP charpentier bois. Les premières
+            années sur les chantiers de maisons neuves et de bâtiments agricoles ; les
+            suivantes consacrées à la restauration du bâti ancien — fermes, longères,
+            lavoirs, petites toitures d'église. Des chantiers menés de la Bretagne à la
+            Bourgogne, et jusqu'en Corse.
           </p>
           <p>
             Une santé qui ne permet plus le travail en hauteur a mis un terme au travail sur
@@ -146,18 +150,17 @@
         <span class="numeral">III</span>
         <h3>Registre des travaux récents</h3>
       </div>
-      <ul class="ledger">
-        <li><span class="what">Charpente traditionnelle à chevrons</span><span class="dots"></span><span class="where">Grange · Alligny-en-Morvan</span></li>
-        <li><span class="what">Restauration d'une ferme du XVIII<sup>e</sup></span><span class="dots"></span><span class="where">Saulieu</span></li>
-        <li><span class="what">Couverture en tuile plate de pays</span><span class="dots"></span><span class="where">Longère · Liernais</span></li>
-        <li><span class="what">Aménagement de combles &amp; fermettes</span><span class="dots"></span><span class="where">Montsauche-les-Settons</span></li>
-        <li><span class="what">Épure &amp; taille d'assemblages traditionnels</span><span class="dots"></span><span class="where">Atelier</span></li>
-        <li><span class="what">Création de lucarne &amp; pose de Velux</span><span class="dots"></span><span class="where">Maison de bourg · Quarré-les-Tombes</span></li>
-      </ul>
+      <p class="devis-line" style="margin:0 0 1.6rem">Neuf chantiers, de la Bourgogne à la Corse — cliquez une planche pour la feuilleter</p>
       <div class="plates">
-        <figure><img src="assets/img/realisations/charpente-ferme-ciel.jpg" alt="Ferme de charpente à poinçon montée sur maçonnerie" loading="lazy" width="1500" height="1125"><figcaption>Ferme à poinçon</figcaption></figure>
-        <figure><img src="assets/img/realisations/couverture-tuile.jpg" alt="Toiture neuve en tuile mécanique" loading="lazy" width="1500" height="1125"><figcaption>Couverture tuile</figcaption></figure>
-        <figure><img src="assets/img/realisations/renovation-grange.jpg" alt="Grange en pierre restaurée" loading="lazy" width="1500" height="1125"><figcaption>Grange restaurée</figcaption></figure>
+        <figure><button class="shot-open" data-projet="longere"><img src="assets/img/realisations/longere/00.jpg" alt="Longère en pierre restaurée" loading="lazy" width="1400" height="1050"></button><figcaption>Restauration d'une longère en pierre</figcaption></figure>
+        <figure><button class="shot-open" data-projet="maison-courbe"><img src="assets/img/realisations/maison-courbe/00.jpg" alt="Maison contemporaine à toiture courbe" loading="lazy" width="1400" height="1050"></button><figcaption>Maison contemporaine à toit courbe</figcaption></figure>
+        <figure><button class="shot-open" data-projet="lavoir"><img src="assets/img/realisations/lavoir/00.jpg" alt="Charpente chêne d'un lavoir" loading="lazy" width="1400" height="1050"></button><figcaption>Lavoir — charpente chêne, tuile</figcaption></figure>
+        <figure><button class="shot-open" data-projet="assemblages"><img src="assets/img/realisations/assemblages/00.jpg" alt="Assemblage de charpente taillé main" loading="lazy" width="1400" height="1050"></button><figcaption>Assemblages traditionnels</figcaption></figure>
+        <figure><button class="shot-open" data-projet="halle"><img src="assets/img/realisations/halle/00.jpg" alt="Grande charpente courbe lamellé-collé" loading="lazy" width="1400" height="1050"></button><figcaption>Charpente courbe de grande portée</figcaption></figure>
+        <figure><button class="shot-open" data-projet="bonifacio"><img src="assets/img/realisations/bonifacio/00.jpg" alt="Charpente et terrasse bois face à la mer" loading="lazy" width="1400" height="1050"></button><figcaption>Charpente &amp; terrasse en Corse</figcaption></figure>
+        <figure><button class="shot-open" data-projet="abri"><img src="assets/img/realisations/abri/00.jpg" alt="Abri de jardin ossature bois" loading="lazy" width="1400" height="1050"></button><figcaption>Abri de jardin en ossature bois</figcaption></figure>
+        <figure><button class="shot-open" data-projet="comble"><img src="assets/img/realisations/comble/00.jpg" alt="Charpente de comble ancienne reprise" loading="lazy" width="1400" height="1050"></button><figcaption>Reprise d'une charpente de comble</figcaption></figure>
+        <figure><button class="shot-open" data-projet="divers"><img src="assets/img/realisations/divers/00.jpg" alt="Grande table en chêne massif" loading="lazy" width="1400" height="1050"></button><figcaption>Menuiserie &amp; ouvrages sur mesure</figcaption></figure>
       </div>
     </section>
 
@@ -204,5 +207,7 @@
 
 <a class="back-versions" href="index.html">‹ Les 3 maquettes</a>
 
+<script src="assets/js/projets.js?v=1" defer></script>
+<script src="assets/js/galerie.js?v=2" defer></script>
 </body>
 </html>

@@ -178,9 +178,22 @@ a{ color:var(--wood-dark); text-underline-offset:2px; }
   font-family:var(--sans); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase;
   color:var(--wood-dark);
 }
-img.shot-img{ width:100%; height:auto; object-fit:cover; }
-.shot-img:hover{ filter:brightness(1.03); }
+img.shot-img{ width:100%; height:auto; object-fit:cover; display:block; }
+.shot .shot-open{ border-radius:4px; border:1px solid var(--line); color:var(--wood-dark); }
+.shot .shot-open img{ border:0; border-radius:0; }
 .shot figcaption{ font-size:.98rem; color:var(--ink-soft); margin-top:.6rem; }
+
+/* photo d'ouverture de section (parcours) */
+.parcours-photo{
+  display:block; width:100%; aspect-ratio:16/9; object-fit:cover;
+  border-radius:5px; border:1px solid var(--line); margin:0 0 2.4rem;
+  box-shadow:var(--shadow);
+}
+/* petite photo au pied d'une carte prestation */
+.card-photo{
+  display:block; width:100%; aspect-ratio:3/2; object-fit:cover;
+  border-radius:4px; margin:.4rem 0 1.1rem;
+}
 
 /* ---------- Cartes prestations ---------- */
 .cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.6rem; }

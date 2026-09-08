@@ -21,10 +21,22 @@ Une fois la version retenue, elle deviendra `index.html` (et on supprimera les a
 ```
 index.html             sélecteur des 3 maquettes
 v1.html / v2.html / v3.html   les 3 versions
-assets/css/             style.css · atelier.css · v3.css
-assets/js/              main.js · atelier.js
+assets/css/             style.css · atelier.css · v3.css · lightbox.css (galerie, commun)
+assets/js/              main.js · atelier.js · charpente3d.js
+                        projets.js  (données des albums chantiers — généré)
+                        galerie.js  (visionneuse commune aux 3 maquettes)
+assets/img/realisations/   photos réelles, un dossier par chantier (00.jpg = couverture)
+                           + _histoire / _mairie / _accompagnement (images de section)
 assets/img/             logo (original JPG + PNG détouré approximatif)
 ```
+
+### Galerie chantiers
+
+Chaque maquette affiche 9 chantiers. Un clic sur une vignette
+(`<button class="shot-open" data-projet="…">`) ouvre `galerie.js` : visionneuse
+plein écran avec les autres photos du chantier, flèches, miniatures, clavier, swipe.
+Les albums (titres, ordre, légendes) sont décrits dans `projets.js`, régénéré par
+`scripts/build-albums` à partir du dossier photos source de Lou.
 
 ## Lancer en local
 
@@ -41,13 +53,17 @@ Les textes actuels sont **provisoires et inventés** pour donner à voir le rend
 
 - **Parcours / histoire** : dates, entreprises, régions, diplômes et titres réels,
   formulation sur la santé (mention actuelle discrète, à valider).
-- **Réalisations** : remplacer les 6 pavés par de vraies photos de chantiers
-  (`assets/img/realisations/`), ajuster lieux / années / natures d'ouvrage.
+- **Réalisations** : 9 albums de photos réelles en place (`assets/img/realisations/`).
+  Titres volontairement descriptifs (pas de nom de client ni d'adresse) ; légendes,
+  ordre et sélection à valider avec Lou dans `assets/js/projets.js`.
 - **Prestations** : détail concret de chaque prestation, mention tarifaire.
-- **Zone d'intervention** : périmètre réel, rayon, déplacements.
+- **Zone d'intervention** : Morvan + chantiers un peu partout (Bretagne, Bourgogne,
+  Corse) ; à préciser avec Lou.
 - **Contact** : créer l'adresse `contact@heritage-savoir-faire.fr` (ou autre),
   confirmer l'adresse postale (Saulieu / Alligny-en-Morvan).
-- **Portrait de Lou** : photo à ajouter (section parcours).
+- **Portrait de Lou** : aucune photo de Lou seul pour l'instant ; les sections
+  « histoire » utilisent une photo de chantier (maison à toit courbe). Sur cette
+  photo, l'ancienne adresse/tél d'entreprise sur la camionnette a été floutée.
 - **Logo** : fournir si possible une version PNG fond transparent + SVG.
 - **Mentions légales** : à compléter dès l'immatriculation (SIRET, assurance RC pro,
   médiateur de la consommation, hébergeur).
