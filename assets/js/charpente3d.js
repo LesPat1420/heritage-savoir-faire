@@ -58,8 +58,6 @@ window.Charpente3D = (function () {
     const chevMat   = new THREE.MeshStandardMaterial({ color: 0xc08a4e, roughness: 0.8 });
     const pegMat    = new THREE.MeshStandardMaterial({ color: 0x5f3c1f, roughness: 0.7 });
     const plasterMat = new THREE.MeshStandardMaterial({ color: 0xe7dcc3, roughness: 1 });
-    const woodPale  = new THREE.MeshStandardMaterial({ color: 0xd7b784, roughness: 0.78, metalness: 0.02 });
-    const woodAged  = new THREE.MeshStandardMaterial({ color: 0x6a5233, roughness: 0.92, metalness: 0.02 });
 
     function beam(len, h, d, mat) {
       const m = new THREE.Mesh(new THREE.BoxGeometry(len, h, d), mat || woodLight);
@@ -200,55 +198,7 @@ window.Charpente3D = (function () {
       };
     }
 
-    /* ========== Modèle 4 : une seule poutre, taillée ==========
-       d'après une photo d'atelier de Lou : UNE poutre équarrie, dont on a
-       taillé (1) un about évasé « en trompette » (galbe concave sous la pièce,
-       dessus plat, pied large) et (2) une entaille à mi-bois en travers du
-       dessus, sur toute la largeur, pour recevoir une pièce croisée.
-       Le corps neuf est clair, la partie ancienne au-delà de l'entaille est grise. */
-    function buildMoise() {
-      const g = new THREE.Group();
-
-      const W = 1.6;                 // largeur de la poutre (axe Z)
-
-      // --- profil latéral de la zone taillée (about + entaille), extrudé sur W ---
-      const s = new THREE.Shape();
-      s.moveTo(0.16, 0.36);                                   // nez de l'about évasé
-      s.quadraticCurveTo(0.75, 0.56, 1.75, 0.62);             // dessus qui remonte du nez au corps
-      s.lineTo(3.15, 0.66);                                   // dessus jusqu'à l'entaille
-      s.lineTo(3.18, 0.02);                                   // joue avant de l'entaille (verticale)
-      s.lineTo(5.55, 0.00);                                   // fond de l'entaille (mi-hauteur)
-      s.lineTo(5.62, 0.70);                                   // joue arrière de l'entaille
-      s.lineTo(5.62, -0.58);                                  // about de raccord (contre la partie grise)
-      s.lineTo(1.35, -0.58);                                  // dessous du corps : droit sur presque toute la longueur
-      s.quadraticCurveTo(0.92, -0.78, 0.74, -1.22);           // galbe concave, serré près de la pointe...
-      s.quadraticCurveTo(0.58, -1.52, 0.42, -1.60);           // ...jusqu'au pied évasé
-      s.lineTo(0.16, -1.62);                                  // méplat du pied
-      s.lineTo(0.16, 0.36);                                   // grande face d'about verticale
-      s.closePath();
-
-      const eg = new THREE.ExtrudeGeometry(s, {
-        depth: W, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.05, bevelSegments: 1, curveSegments: 26
-      });
-      eg.translate(0, 0, -W / 2);
-      const worked = new THREE.Mesh(eg, woodPale);
-      worked.castShadow = true; worked.receiveShadow = true;
-      g.add(worked);
-
-      // --- prolongement ancien (gris), au-delà de l'entaille ---
-      box(g, 4.6, 1.29, W, 7.9, 0.075, 0, woodAged);
-
-      // recentrage : la zone d'intérêt est vers x = 0..6
-      g.position.x = -3.1;
-
-      return {
-        group: g, name: 'Croisement à mi-bois',
-        target: new THREE.Vector3(0, -0.25, 0),
-        dist: 12.5, phi: 1.22, theta: 0.72
-      };
-    }
-
-    const BUILDERS = [buildFerme, buildAssemblage, buildColombage, buildMoise];
+    const BUILDERS = [buildFerme, buildAssemblage, buildColombage];
     let modelIndex = Math.min(opts.model || 0, BUILDERS.length - 1);
     let current = null, currentName = '';
 

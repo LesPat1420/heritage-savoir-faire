@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400&family=Oswald:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/v4.css?v=4">
+<link rel="stylesheet" href="assets/css/v4.css?v=5">
 <link rel="stylesheet" href="assets/css/lightbox.css?v=3">
 </head>
 <body>
@@ -61,13 +61,11 @@
         </div>
       </div>
       <div class="hero-plate">
+        <img class="hero-logo" src="assets/img/logo.png" alt="L'Héritage d'un savoir-faire">
         <div class="hero-3d" id="hero-3d">
+          <button class="hero-3d-arrow" type="button" data-dir="prev" aria-label="Modèle précédent">‹</button>
           <canvas id="hero-charpente" aria-hidden="true"></canvas>
-          <div class="hero-3d-nav">
-            <button class="hero-3d-arrow" type="button" data-dir="prev" aria-label="Modèle précédent">‹</button>
-            <span class="hero-3d-label">Ferme à poinçon</span>
-            <button class="hero-3d-arrow" type="button" data-dir="next" aria-label="Modèle suivant">›</button>
-          </div>
+          <button class="hero-3d-arrow" type="button" data-dir="next" aria-label="Modèle suivant">›</button>
         </div>
       </div>
     </div>
@@ -215,20 +213,26 @@
       <p class="section-kicker">Comment ça se passe</p>
       <h2 class="section-title">Simple, et sans mauvaise surprise</h2>
       <ol class="steps">
-        <li>
-          <span class="num">1</span>
-          <h3>On discute</h3>
-          <p>Un coup de fil ou un message. Vous me racontez le projet, je vous dis franchement si je suis la bonne personne.</p>
+        <li class="step step-arrow">
+          <div class="step-body">
+            <span class="num">1</span>
+            <h3>On discute</h3>
+            <p>Un coup de fil ou un message. Vous me racontez le projet, je vous dis franchement si je suis la bonne personne.</p>
+          </div>
         </li>
-        <li>
-          <span class="num">2</span>
-          <h3>Je vous fais un devis</h3>
-          <p>Clair, détaillé, gratuit. Vous savez exactement ce que vous payez et ce que vous recevez.</p>
+        <li class="step step-arrow">
+          <div class="step-body">
+            <span class="num">2</span>
+            <h3>Je vous fais un devis</h3>
+            <p>Clair, détaillé, gratuit. Vous savez exactement ce que vous payez et ce que vous recevez.</p>
+          </div>
         </li>
-        <li>
-          <span class="num">3</span>
-          <h3>Je vous rends le travail</h3>
-          <p>Rapport, plans, feuille de débit ou dossier de mairie — dans le délai annoncé, et on en reparle si besoin.</p>
+        <li class="step">
+          <div class="step-body">
+            <span class="num">3</span>
+            <h3>Je vous rends le travail</h3>
+            <p>Rapport, plans, feuille de débit ou dossier de mairie — dans le délai annoncé, et on en reparle si besoin.</p>
+          </div>
         </li>
       </ol>
     </div>
@@ -252,13 +256,15 @@
         </ul>
       </div>
       <figure class="zone-map">
-        <iframe
-          title="Carte de la zone d'intervention autour de Saulieu, dans le Morvan"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=2.15%2C46.35%2C6.25%2C48.35&amp;layer=mapnik&amp;marker=47.2807%2C4.2306"
-          loading="lazy" referrerpolicy="no-referrer"></iframe>
+        <div class="map-frame">
+          <iframe
+            title="Carte de la zone d'intervention autour de Saulieu, dans le Morvan"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=2.15%2C46.35%2C6.25%2C48.35&amp;layer=mapnik&amp;marker=47.2807%2C4.2306"
+            loading="lazy" referrerpolicy="no-referrer"></iframe>
+        </div>
         <figcaption>
-          Base à Saulieu (Côte-d'Or) —
-          <a href="https://www.openstreetmap.org/?mlat=47.2807&amp;mlon=4.2306#map=9/47.28/4.23" target="_blank" rel="noopener">voir la carte en grand</a>
+          Base à Saulieu (Côte-d'Or) · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a> ·
+          <a href="https://www.openstreetmap.org/?mlat=47.2807&amp;mlon=4.2306#map=9/47.28/4.23" target="_blank" rel="noopener">agrandir</a>
         </figcaption>
       </figure>
     </div>
@@ -318,7 +324,7 @@
 <script src="assets/js/projets.js?v=1" defer></script>
 <script src="assets/js/galerie.js?v=2" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="assets/js/charpente3d.js?v=5" defer></script>
+<script src="assets/js/charpente3d.js?v=6" defer></script>
 <script>
   window.addEventListener('load', function () {
     var box = document.getElementById('hero-3d');
@@ -327,13 +333,9 @@
     var api = window.Charpente3D && window.Charpente3D.create(c, { interactive: true, autoSpeed: 0.0016, dist: 17 });
     if (!api) { box.style.display = 'none'; return; }
     box.classList.add('is-3d');
-    var label = box.querySelector('.hero-3d-label');
-    function sync() { if (label) label.textContent = api.getLabel(); }
-    sync();
     box.querySelectorAll('.hero-3d-arrow').forEach(function (b) {
       b.addEventListener('click', function () {
         b.dataset.dir === 'prev' ? api.prev() : api.next();
-        sync();
       });
     });
   });
