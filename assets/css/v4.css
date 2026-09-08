@@ -87,7 +87,7 @@ a{ color:var(--brick); text-underline-offset:2px; }
 .hero-lede{ font-size:1.16rem; color:var(--ink-soft); max-width:46ch; margin:0 0 1.8rem; }
 .hero-actions{ display:flex; flex-wrap:wrap; gap:1rem; }
 
-.hero-plate{ position:relative; border:2px solid var(--ink); background:var(--paper); box-shadow:7px 7px 0 var(--ink); padding:.6rem; }
+.hero-plate{ position:relative; }
 .hero-3d{ position:relative; width:100%; aspect-ratio:1/1; padding-bottom:2.1rem; cursor:grab; touch-action:none; }
 .hero-3d:active{ cursor:grabbing; }
 .hero-3d canvas{ position:absolute; inset:0 0 2.1rem 0; width:100%; height:calc(100% - 2.1rem); }

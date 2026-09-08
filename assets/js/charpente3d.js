@@ -58,6 +58,8 @@ window.Charpente3D = (function () {
     const chevMat   = new THREE.MeshStandardMaterial({ color: 0xc08a4e, roughness: 0.8 });
     const pegMat    = new THREE.MeshStandardMaterial({ color: 0x5f3c1f, roughness: 0.7 });
     const plasterMat = new THREE.MeshStandardMaterial({ color: 0xe7dcc3, roughness: 1 });
+    const woodPale  = new THREE.MeshStandardMaterial({ color: 0xd7b784, roughness: 0.78, metalness: 0.02 });
+    const woodAged  = new THREE.MeshStandardMaterial({ color: 0x6a5233, roughness: 0.92, metalness: 0.02 });
 
     function beam(len, h, d, mat) {
       const m = new THREE.Mesh(new THREE.BoxGeometry(len, h, d), mat || woodLight);
@@ -198,7 +200,55 @@ window.Charpente3D = (function () {
       };
     }
 
-    const BUILDERS = [buildFerme, buildAssemblage, buildColombage];
+    /* ========== Modèle 4 : assemblage moisé, poutre à about façonné ==========
+       d'après une photo d'atelier de Lou : une pièce claire à l'about galbé,
+       moisée sur une poutre ancienne au-dessus d'un poteau, bloquée par une cheville */
+    function buildMoise() {
+      const g = new THREE.Group();
+
+      // --- pièce claire à about façonné (profil extrudé) ---
+      const th = 0.9;
+      const p = new THREE.Shape();
+      p.moveTo(-4.8, -0.55);
+      p.lineTo(0, -0.55);
+      p.quadraticCurveTo(1.0, -0.40, 1.75, -1.45);   // galbe bas
+      p.lineTo(2.10, -1.30);
+      p.lineTo(2.10, 1.30);                           // about
+      p.lineTo(1.75, 1.45);
+      p.quadraticCurveTo(1.0, 0.40, 0, 0.55);         // galbe haut
+      p.lineTo(-4.8, 0.55);
+      p.closePath();
+      const pg = new THREE.ExtrudeGeometry(p, {
+        depth: th, bevelEnabled: true, bevelThickness: 0.04, bevelSize: 0.04, bevelSegments: 1, curveSegments: 22
+      });
+      pg.translate(0, 0, -th / 2);
+      const piece = new THREE.Mesh(pg, woodPale);
+      piece.castShadow = true; piece.receiveShadow = true;
+      piece.position.y = 0.55;                        // le dessous droit repose à y=0
+      g.add(piece);
+
+      // --- poutre ancienne transversale (moisée), avec logement ---
+      box(g, 0.95, 1.05, 6.4, -1.2, -0.55, 0, woodAged);                 // corps
+      box(g, 0.95, 0.55, 2.55, -1.2, 0.25,  1.95, woodAged);             // joue av.
+      box(g, 0.95, 0.55, 2.55, -1.2, 0.25, -1.95, woodAged);             // joue arr.
+
+      // --- poteau ---
+      box(g, 1.15, 3.2, 1.15, -1.2, -2.62, 0, woodLight);
+
+      // --- cheville ---
+      const peg = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 2.4, 12), pegMat);
+      peg.castShadow = true; peg.receiveShadow = true;
+      peg.position.set(-1.2, 0.15, 0);
+      g.add(peg);
+
+      return {
+        group: g, name: 'Assemblage moisé',
+        target: new THREE.Vector3(-0.5, -0.15, 0),
+        dist: 12, phi: 1.18, theta: 0.6
+      };
+    }
+
+    const BUILDERS = [buildFerme, buildAssemblage, buildColombage, buildMoise];
     let modelIndex = Math.min(opts.model || 0, BUILDERS.length - 1);
     let current = null, currentName = '';
 
