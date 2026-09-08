@@ -178,6 +178,8 @@ a{ color:var(--wood-dark); text-underline-offset:2px; }
   font-family:var(--sans); font-size:.78rem; letter-spacing:.12em; text-transform:uppercase;
   color:var(--wood-dark);
 }
+img.shot-img{ width:100%; height:auto; object-fit:cover; }
+.shot-img:hover{ filter:brightness(1.03); }
 .shot figcaption{ font-size:.98rem; color:var(--ink-soft); margin-top:.6rem; }
 
 /* ---------- Cartes prestations ---------- */

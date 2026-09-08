@@ -151,6 +151,7 @@ main{ overflow:hidden; }
   display:grid; place-items:center;
 }
 .polaroid-img::after{ content:attr(data-label); font-family:var(--hand); font-size:1.2rem; color:var(--wood-2); }
+img.polaroid-img{ display:block; width:100%; height:auto; object-fit:cover; }
 .polaroid-cap,.polaroid figcaption{ font-family:var(--hand); font-size:1.25rem; color:var(--ink); text-align:center; padding:.5rem .3rem .7rem; margin:0; }
 
 /* ---------- Mon histoire ---------- */

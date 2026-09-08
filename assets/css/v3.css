@@ -91,6 +91,7 @@ a{ color:var(--brick); }
 .about{ display:grid; grid-template-columns:260px 1fr; gap:2.4rem; align-items:start; }
 .portrait{ border:2px solid var(--rule); background:var(--paper-2); padding:.6rem; }
 .portrait-img{ aspect-ratio:4/5; background:repeating-linear-gradient(45deg,#e7d9b6 0 12px,#e0d0a8 12px 24px); display:grid; place-items:center; font-family:var(--label); letter-spacing:.1em; text-transform:uppercase; font-size:.72rem; color:var(--forest); text-align:center; padding:1rem; }
+img.portrait-img{ display:block; width:100%; height:auto; object-fit:cover; filter:grayscale(1) sepia(.32) contrast(1.04); }
 .portrait-cap{ font-family:var(--label); letter-spacing:.1em; text-transform:uppercase; font-size:.7rem; text-align:center; margin:.5rem 0 0; color:var(--ink); }
 .about-txt p{ margin:0 0 1rem; }
 .about-txt p:first-of-type::first-letter{ font-family:var(--disp); font-size:3.4rem; line-height:.8; float:left; margin:.1em .12em 0 0; color:var(--brick); }
@@ -102,6 +103,11 @@ a{ color:var(--brick); }
 .ledger .what{ font-weight:500; white-space:nowrap; }
 .ledger .dots{ flex:1; border-bottom:2px dotted rgba(34,27,17,.5); transform:translateY(-.25em); }
 .ledger .where{ font-family:var(--label); letter-spacing:.06em; text-transform:uppercase; font-size:.82rem; color:var(--forest); white-space:nowrap; }
+.plates{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.8rem 0 0; }
+.plates figure{ margin:0; border:2px solid var(--rule); background:var(--paper-2); padding:.5rem; }
+.plates img{ display:block; width:100%; height:clamp(150px,20vw,210px); object-fit:cover; filter:grayscale(1) sepia(.34) contrast(1.05); }
+.plates figcaption{ font-family:var(--label); letter-spacing:.08em; text-transform:uppercase; font-size:.64rem; color:var(--forest); text-align:center; margin:.45rem 0 0; }
+@media(max-width:640px){ .plates{ grid-template-columns:1fr 1fr; } }
 
 /* ---------- Mode d'emploi ---------- */
 .howto{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:2px solid var(--rule); }
