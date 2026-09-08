@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400&family=Oswald:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/v4.css?v=6">
+<link rel="stylesheet" href="assets/css/v4.css?v=7">
 <link rel="stylesheet" href="assets/css/lightbox.css?v=3">
 </head>
 <body>
@@ -61,11 +61,13 @@
         </div>
       </div>
       <div class="hero-plate">
-        <img class="hero-logo" src="assets/img/logo.png" alt="L'Héritage d'un savoir-faire">
-        <div class="hero-3d" id="hero-3d">
-          <button class="hero-3d-arrow" type="button" data-dir="prev" aria-label="Modèle précédent">‹</button>
-          <canvas id="hero-charpente" aria-hidden="true"></canvas>
-          <button class="hero-3d-arrow" type="button" data-dir="next" aria-label="Modèle suivant">›</button>
+        <div class="hero-stage is-logo" id="hero-stage">
+          <img class="hero-logo" src="assets/img/logo.png" alt="L'Héritage d'un savoir-faire">
+          <div class="hero-3d" id="hero-3d" hidden>
+            <canvas id="hero-charpente" aria-hidden="true"></canvas>
+          </div>
+          <button class="hero-3d-arrow" type="button" data-dir="prev" aria-label="Précédent">‹</button>
+          <button class="hero-3d-arrow" type="button" data-dir="next" aria-label="Suivant">›</button>
         </div>
       </div>
     </div>
@@ -324,20 +326,47 @@
 <script src="assets/js/projets.js?v=1" defer></script>
 <script src="assets/js/galerie.js?v=2" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="assets/js/charpente3d.js?v=6" defer></script>
+<script src="assets/js/charpente3d.js?v=7" defer></script>
 <script>
+  /* Hero : diaporama logo -> modeles 3D -> retour au logo, 5 s par vue.
+     Toujours manipulable (fleches + rotation a la souris). */
   window.addEventListener('load', function () {
+    var stage = document.getElementById('hero-stage');
     var box = document.getElementById('hero-3d');
     var c = document.getElementById('hero-charpente');
-    if (!box || !c) return;
-    var api = window.Charpente3D && window.Charpente3D.create(c, { interactive: true, autoSpeed: 0.0016, dist: 17 });
-    if (!api) { box.style.display = 'none'; return; }
-    box.classList.add('is-3d');
-    box.querySelectorAll('.hero-3d-arrow').forEach(function (b) {
-      b.addEventListener('click', function () {
-        b.dataset.dir === 'prev' ? api.prev() : api.next();
-      });
+    if (!stage || !box || !c) return;
+
+    var api = window.Charpente3D && window.Charpente3D.create(c, { interactive: true, autoSpeed: 0.004, dist: 18 });
+    if (!api) { box.remove(); return; }   // pas de WebGL : le logo reste seul
+    box.hidden = false;                    // desormais l'affichage est piloté par la classe .is-logo
+
+    var MODELS = api.count || 3;
+    var SLIDES = MODELS + 1;               // 0 = logo, 1..MODELS = modeles
+    var STEP = 5000;
+    var slide = 0, timer = null, held = false;
+
+    function show(n) {
+      slide = ((n % SLIDES) + SLIDES) % SLIDES;
+      var logo = slide === 0;
+      stage.classList.toggle('is-logo', logo);
+      if (logo) { api.stop(); }
+      else { api.setModel(slide - 1); api.start(); }
+    }
+    function tick() {
+      clearTimeout(timer);
+      if (held) return;
+      timer = setTimeout(function () { show(slide + 1); tick(); }, STEP);
+    }
+    function go(n) { show(n); tick(); }
+
+    show(0); tick();
+
+    stage.querySelectorAll('.hero-3d-arrow').forEach(function (b) {
+      b.addEventListener('click', function () { go(slide + (b.dataset.dir === 'prev' ? -1 : 1)); });
     });
+    // pendant qu'on manipule le modele, on suspend le defilement
+    c.addEventListener('pointerdown', function () { held = true; clearTimeout(timer); });
+    window.addEventListener('pointerup', function () { if (held) { held = false; tick(); } });
   });
 </script>
 <script>

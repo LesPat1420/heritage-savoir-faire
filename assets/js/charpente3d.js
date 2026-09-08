@@ -232,7 +232,8 @@ window.Charpente3D = (function () {
       canvas.addEventListener('pointermove', (e) => {
         if (!dragging) return;
         view.theta -= (e.clientX - mx) * 0.008;
-        view.phi = Math.max(0.35, Math.min(1.5, view.phi - (e.clientY - my) * 0.006));
+        // on garde toujours une vue de trois-quarts par-dessus : jamais par en-dessous
+        view.phi = Math.max(0.6, Math.min(1.32, view.phi - (e.clientY - my) * 0.006));
         mx = e.clientX; my = e.clientY;
       });
       if (opts.wheelZoom) {
