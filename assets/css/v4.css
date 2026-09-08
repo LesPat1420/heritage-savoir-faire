@@ -88,7 +88,10 @@ a{ color:var(--brick); text-underline-offset:2px; }
 .hero-actions{ display:flex; flex-wrap:wrap; gap:1rem; }
 
 .hero-plate{ position:relative; }
-.hero-logo{ width:clamp(104px,32%,158px); height:auto; margin:0 auto .1rem; display:block; }
+.hero-logo{
+  display:block; width:clamp(150px,44%,220px); aspect-ratio:1 / 1; height:auto;
+  object-fit:cover; border-radius:50%; margin:0 auto .4rem;
+}
 .hero-3d{ position:relative; width:100%; aspect-ratio:1/1; padding:1.6rem 1.9rem 0; cursor:grab; touch-action:none; }
 .hero-3d:active{ cursor:grabbing; }
 .hero-3d canvas{ position:absolute; inset:1.6rem 1.9rem 0 1.9rem; width:calc(100% - 3.8rem); height:calc(100% - 1.6rem); }
@@ -147,17 +150,40 @@ a{ color:var(--brick); text-underline-offset:2px; }
 img.shot-img{ width:100%; height:clamp(150px,17vw,190px); object-fit:cover; display:block; }
 .shot figcaption{ font-family:var(--label); text-transform:uppercase; letter-spacing:.05em; font-size:.72rem; color:var(--forest); margin-top:.7rem; line-height:1.35; }
 
-/* ---------- Comment ça se passe (étapes 1 & 2 en forme de flèche) ---------- */
-.steps{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; align-items:stretch; --pt:26px; }
-.steps .step{
-  position:relative; background:var(--ink); padding:2px;              /* le fond noir = le contour 2 px */
+/* ---------- Comment ça se passe (chevrons imbriqués : les 3 forment un bloc) ---------- */
+.steps{
+  list-style:none; margin:0; padding:0; display:flex; align-items:stretch; --pt:30px;
   filter:drop-shadow(5px 5px 0 var(--ink));
 }
-.steps .step-body{ background:var(--card); height:100%; padding:1.6rem 1.4rem; }
+.steps .step{
+  flex:1 1 0; position:relative; background:var(--ink);   /* fond encre = le contour 2 px */
+}
+.steps .step:not(:last-child){ margin-right:calc(var(--pt) * -1); }  /* la pointe entre dans l'étape suivante */
+.steps .step:nth-child(1){ z-index:3; }
+.steps .step:nth-child(2){ z-index:2; }
+.steps .step:nth-child(3){ z-index:1; }
+.steps .step-body{ background:var(--card); margin:2px; height:calc(100% - 4px); padding:1.5rem 1.35rem; }
 .steps .step-body>*:first-child{ margin-top:0; }
-/* étapes 1 & 2 : le côté droit tiré en pointe (contour de flèche vers la droite) */
-.steps .step-arrow{ clip-path:polygon(0 0, calc(100% - var(--pt)) 0, 100% 50%, calc(100% - var(--pt)) 100%, 0 100%); }
-.steps .step-arrow .step-body{ clip-path:polygon(0 0, calc(100% - var(--pt)) 0, 100% 50%, calc(100% - var(--pt)) 100%, 0 100%); padding-right:calc(1.4rem + var(--pt)); }
+
+/* étape 1 : pointe à droite, bord gauche droit */
+.steps .step:nth-child(1),
+.steps .step:nth-child(1) .step-body{
+  clip-path:polygon(0 0, calc(100% - var(--pt)) 0, 100% 50%, calc(100% - var(--pt)) 100%, 0 100%);
+}
+/* étape 2 : encoche à gauche (reçoit la pointe 1) + pointe à droite */
+.steps .step:nth-child(2),
+.steps .step:nth-child(2) .step-body{
+  clip-path:polygon(0 0, calc(100% - var(--pt)) 0, 100% 50%, calc(100% - var(--pt)) 100%, 0 100%, var(--pt) 50%);
+}
+.steps .step:nth-child(2) .step-body,
+.steps .step:nth-child(3) .step-body{ padding-left:calc(1.35rem + var(--pt) * .6); }
+.steps .step:nth-child(1) .step-body,
+.steps .step:nth-child(2) .step-body{ padding-right:calc(1.35rem + var(--pt) * .7); }
+/* étape 3 : encoche à gauche, bord droit droit */
+.steps .step:nth-child(3),
+.steps .step:nth-child(3) .step-body{
+  clip-path:polygon(0 0, 100% 0, 100% 100%, 0 100%, var(--pt) 50%);
+}
 .steps .num{ font-family:var(--display); font-weight:600; font-size:1.6rem; color:var(--brick); display:block; line-height:1; }
 .steps h3{ font-family:var(--label); font-weight:600; text-transform:uppercase; letter-spacing:.08em; font-size:.95rem; margin:.5rem 0 .5rem; }
 .steps p{ margin:0; color:var(--ink-soft); font-size:1rem; }
@@ -225,10 +251,26 @@ img.shot-img{ width:100%; height:clamp(150px,17vw,190px); object-fit:cover; disp
   .cards{ grid-template-columns:1fr; }
   .gallery{ grid-template-columns:repeat(2,1fr); }
   .zone-layout{ grid-template-columns:1fr; }
-  .steps{ grid-template-columns:1fr; gap:1.1rem; }
-  /* empilées : la pointe se retourne vers le bas */
-  .steps .step-arrow{ clip-path:polygon(0 0, 100% 0, 100% calc(100% - var(--pt)), 50% 100%, 0 calc(100% - var(--pt))); }
-  .steps .step-arrow .step-body{ clip-path:polygon(0 0, 100% 0, 100% calc(100% - var(--pt)), 50% 100%, 0 calc(100% - var(--pt))); padding-right:1.4rem; padding-bottom:calc(1.6rem + var(--pt)); }
+  /* empilées : les chevrons pointent vers le bas et s'imbriquent verticalement */
+  .steps{ flex-direction:column; --pt:26px; }
+  .steps .step:not(:last-child){ margin-right:0; margin-bottom:calc(var(--pt) * -1); }
+  .steps .step-body{ padding:1.5rem 1.35rem !important; }
+  .steps .step:nth-child(1),
+  .steps .step:nth-child(1) .step-body{
+    clip-path:polygon(0 0, 100% 0, 100% calc(100% - var(--pt)), 50% 100%, 0 calc(100% - var(--pt)));
+  }
+  .steps .step:nth-child(2),
+  .steps .step:nth-child(2) .step-body{
+    clip-path:polygon(0 0, 50% var(--pt), 100% 0, 100% calc(100% - var(--pt)), 50% 100%, 0 calc(100% - var(--pt)));
+  }
+  .steps .step:nth-child(2) .step-body,
+  .steps .step:nth-child(3) .step-body{ padding-top:calc(1.5rem + var(--pt) * .7) !important; }
+  .steps .step:nth-child(1) .step-body,
+  .steps .step:nth-child(2) .step-body{ padding-bottom:calc(1.5rem + var(--pt) * .6) !important; }
+  .steps .step:nth-child(3),
+  .steps .step:nth-child(3) .step-body{
+    clip-path:polygon(0 0, 50% var(--pt), 100% 0, 100% 100%, 0 100%);
+  }
 }
 @media (max-width:720px){
   body{ font-size:1.05rem; }
