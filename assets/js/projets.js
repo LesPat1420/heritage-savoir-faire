@@ -82,23 +82,23 @@ window.PROJETS = [
    },
    {
     "src": "assets/img/realisations/maison-courbe/03.jpg",
-    "leg": "Levage d'un mur préfabriqué à la grue"
+    "leg": "Levage d'un panneau de bois massif à la grue"
    },
    {
     "src": "assets/img/realisations/maison-courbe/04.jpg",
-    "leg": "Murs de refend en panneaux bois massif à l'étage"
+    "leg": "Murs de refend en panneaux de bois massif à l'étage"
    },
    {
     "src": "assets/img/realisations/maison-courbe/05.jpg",
-    "leg": "Plancher de l'étage cloué sur solivage bois"
+    "leg": "Pose des panneaux de plancher à l'étage"
    },
    {
     "src": "assets/img/realisations/maison-courbe/06.jpg",
-    "leg": "Charpente de la toiture courbe vue depuis l'échafaudage"
+    "leg": "Volume bardé cèdre et pergola, sur soubassement maçonné"
    },
    {
     "src": "assets/img/realisations/maison-courbe/07.jpg",
-    "leg": "Pose du bardage cèdre vertical sur la façade"
+    "leg": "Pose du bardage cèdre sur la façade échafaudée"
    },
    {
     "src": "assets/img/realisations/maison-courbe/08.jpg",
@@ -113,67 +113,67 @@ window.PROJETS = [
  {
   "id": "charpente",
   "titre": "Charpente bois, du neuf à la restauration",
-  "resume": "Fermes, préaux, pergolas et grandes charpentes : taille à l'atelier, assemblages chevillés, levage à la grue, et reprise de charpentes anciennes.",
+  "resume": "Fermes, préaux, tonnelles et grandes charpentes : taille à l'atelier, assemblages chevillés, levage à la grue, et reprise de charpentes anciennes.",
   "photos": [
    {
     "src": "assets/img/realisations/charpente/00.jpg",
-    "leg": "Charpente de préau : éventail de chevrons sur poinçon central"
+    "leg": "Appentis en bardage cèdre, chevrons de la toiture monopente apparents"
    },
    {
     "src": "assets/img/realisations/charpente/01.jpg",
-    "leg": "Pergola en bois, entrait retroussé et poinçon mouluré"
+    "leg": "Charpente d'une tonnelle à quatre pentes, arbalétriers et empannons assemblés"
    },
    {
     "src": "assets/img/realisations/charpente/02.jpg",
-    "leg": "Détail d'assemblage : arbalétriers, poinçon et aisseliers"
+    "leg": "Poinçon décoratif à cul-de-lampe sculpté et aisseliers courbes"
    },
    {
     "src": "assets/img/realisations/charpente/03.jpg",
-    "leg": "Levage d'une ferme préfabriquée à l'atelier"
+    "leg": "Fermes treillis d'un abri, posées sur des murs maçonnés (Corse)"
    },
    {
     "src": "assets/img/realisations/charpente/04.jpg",
-    "leg": "Pergola de jardin sur poteaux maçonnés, couverture tuile"
+    "leg": "Tonnelle de jardin sur poteaux bois, chevronnage à claire-voie"
    },
    {
     "src": "assets/img/realisations/charpente/05.jpg",
-    "leg": "Pergola contemporaine vue de dessous, chevrons rythmés"
+    "leg": "Pergola contemporaine à lames serrées, adossée à une maison"
    },
    {
     "src": "assets/img/realisations/charpente/06.jpg",
-    "leg": "Auvent en bois greffé sur une maison à ossature"
+    "leg": "L'ensemble poinçon-aisseliers levé à la grue"
    },
    {
     "src": "assets/img/realisations/charpente/07.jpg",
-    "leg": "Ferme reconstituée à blanc à l'atelier avant transport"
+    "leg": "Ferme cintrée assemblée à blanc sur l'aire de l'atelier"
    },
    {
     "src": "assets/img/realisations/charpente/08.jpg",
-    "leg": "Structure de préau en chêne adossée à une grange"
+    "leg": "Ossature de préau en douglas adossée à une grange en pierre"
    },
    {
     "src": "assets/img/realisations/charpente/09.jpg",
-    "leg": "Reprise d'une charpente ancienne, pièces neuves greffées"
+    "leg": "Charpente neuve reposée sur les murs anciens d'un bâtiment"
    },
    {
     "src": "assets/img/realisations/charpente/10.jpg",
-    "leg": "Grande charpente de bâtiment agricole en douglas"
+    "leg": "Grande charpente de préau ouvert sur poteaux, en douglas"
    },
    {
     "src": "assets/img/realisations/charpente/11.jpg",
-    "leg": "Charpente d'un bâtiment ouvert, portée sur poteaux bois"
+    "leg": "Le même abri ouvert, vu de la façade arrière"
    },
    {
     "src": "assets/img/realisations/charpente/12.jpg",
-    "leg": "Levage à la grue d'un pan de charpente courbe"
+    "leg": "Levage à la grue d'un pan de toiture cintrée assemblé au sol"
    },
    {
     "src": "assets/img/realisations/charpente/13.jpg",
-    "leg": "Ferme courbe déposée sur les murs maçonnés"
+    "leg": "Levage d'une ferme en arc brisé au-dessus d'une voûte de pierre"
    },
    {
     "src": "assets/img/realisations/charpente/14.jpg",
-    "leg": "Charpente de préau terminée, vue d'ensemble"
+    "leg": "Charpente de tonnelle terminée sur muret, face au paysage"
    }
   ]
  },

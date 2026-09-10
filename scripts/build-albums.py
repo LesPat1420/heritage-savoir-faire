@@ -5,6 +5,11 @@
 Source : ~/Bureau/photos book entreprise 02/ — un sous-dossier par projet.
 Chaque album ci-dessous : (id, dossier, titre, resume, [(fichier, legende), ...]).
 La 1re photo de la liste sert de couverture.
+
+NB : au 2026-09-10 le dossier source n'est plus sur le Bureau. Les images
+optimisees sont deja versionnees dans assets/img/realisations/ ; ce script
+ne sert qu'a les regenerer si on recupere les photos d'origine. L'ordre des
+listes ci-dessous correspond a l'ordre des fichiers NN.jpg deja commites.
 """
 import os, json, shutil
 from PIL import Image, ImageOps
@@ -43,35 +48,35 @@ ALBUMS = [
    ("angle coté feu.JPG",        "Jonction du bardage cèdre et de la toiture zinc courbe"),
    ("157.JPG",                   "Ossature bois sous pare-pluie, naissance de la toiture cintrée"),
    ("160.JPG",                   "Le galbe de la toiture se dessine sur la façade"),
-   ("164.jpg",                   "Levage d'un mur préfabriqué à la grue"),
-   ("163.jpg",                   "Murs de refend en panneaux bois massif à l'étage"),
-   ("162.jpg",                   "Plancher de l'étage cloué sur solivage bois"),
-   ("161.jpg",                   "Charpente de la toiture courbe vue depuis l'échafaudage"),
-   ("169.jpg",                   "Pose du bardage cèdre vertical sur la façade"),
+   ("164.jpg",                   "Levage d'un panneau de bois massif à la grue"),
+   ("163.jpg",                   "Murs de refend en panneaux de bois massif à l'étage"),
+   ("162.jpg",                   "Pose des panneaux de plancher à l'étage"),
+   ("161.jpg",                   "Volume bardé cèdre et pergola, sur soubassement maçonné"),
+   ("169.jpg",                   "Pose du bardage cèdre sur la façade échafaudée"),
    ("vue du champ par coté.JPG", "Depuis le pré : lucarne rampante et couverture zinc"),
    ("vue du champ.JPG",          "Volume principal et toiture cintrée, façade arrière"),
   ]),
 
  ("charpente", "charpente",
   "Charpente bois, du neuf à la restauration",
-  "Fermes, préaux, pergolas et grandes charpentes : taille à l'atelier, assemblages "
+  "Fermes, préaux, tonnelles et grandes charpentes : taille à l'atelier, assemblages "
   "chevillés, levage à la grue, et reprise de charpentes anciennes.",
   [
-   ("HPIM0552.JPG",              "Charpente de préau : éventail de chevrons sur poinçon central"),
-   ("DSCF1109.JPG",              "Pergola en bois, entrait retroussé et poinçon mouluré"),
-   ("detail arba CF poinçon 1.JPG", "Détail d'assemblage : arbalétriers, poinçon et aisseliers"),
-   ("Bonifacio-20150309-02330.jpg", "Levage d'une ferme préfabriquée à l'atelier"),
-   ("DSCF1085.JPG",              "Pergola de jardin sur poteaux maçonnés, couverture tuile"),
-   ("Pergola vue d'en dessous.JPG", "Pergola contemporaine vue de dessous, chevrons rythmés"),
-   ("IMG-20150625-02733.jpg",    "Auvent en bois greffé sur une maison à ossature"),
-   ("IMG_20220818_083212230.jpg", "Ferme reconstituée à blanc à l'atelier avant transport"),
-   ("IMG_20220819_134846643.jpg", "Structure de préau en chêne adossée à une grange"),
-   ("IMG_20221026_161339003.jpg", "Reprise d'une charpente ancienne, pièces neuves greffées"),
-   ("at 02.jpg",                 "Grande charpente de bâtiment agricole en douglas"),
-   ("b 1.jpg",                   "Charpente d'un bâtiment ouvert, portée sur poteaux bois"),
-   ("m 02.JPG",                  "Levage à la grue d'un pan de charpente courbe"),
-   ("mo 03.JPG",                 "Ferme courbe déposée sur les murs maçonnés"),
-   ("vue du tout.jpg",           "Charpente de préau terminée, vue d'ensemble"),
+   ("HPIM0552.JPG",              "Appentis en bardage cèdre, chevrons de la toiture monopente apparents"),
+   ("DSCF1109.JPG",              "Charpente d'une tonnelle à quatre pentes, arbalétriers et empannons assemblés"),
+   ("detail arba CF poinçon 1.JPG", "Poinçon décoratif à cul-de-lampe sculpté et aisseliers courbes"),
+   ("Bonifacio-20150309-02330.jpg", "Fermes treillis d'un abri, posées sur des murs maçonnés (Corse)"),
+   ("DSCF1085.JPG",              "Tonnelle de jardin sur poteaux bois, chevronnage à claire-voie"),
+   ("Pergola vue d'en dessous.JPG", "Pergola contemporaine à lames serrées, adossée à une maison"),
+   ("IMG-20150625-02733.jpg",    "L'ensemble poinçon-aisseliers levé à la grue"),
+   ("IMG_20220818_083212230.jpg", "Ferme cintrée assemblée à blanc sur l'aire de l'atelier"),
+   ("IMG_20220819_134846643.jpg", "Ossature de préau en douglas adossée à une grange en pierre"),
+   ("IMG_20221026_161339003.jpg", "Charpente neuve reposée sur les murs anciens d'un bâtiment"),
+   ("at 02.jpg",                 "Grande charpente de préau ouvert sur poteaux, en douglas"),
+   ("b 1.jpg",                   "Le même abri ouvert, vu de la façade arrière"),
+   ("m 02.JPG",                  "Levage à la grue d'un pan de toiture cintrée assemblé au sol"),
+   ("mo 03.JPG",                 "Levage d'une ferme en arc brisé au-dessus d'une voûte de pierre"),
+   ("vue du tout.jpg",           "Charpente de tonnelle terminée sur muret, face au paysage"),
   ]),
 
  ("lavoir", "lavoir du park",
