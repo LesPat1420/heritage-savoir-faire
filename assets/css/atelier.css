@@ -256,7 +256,7 @@ img.polaroid-img{ display:block; width:100%; height:auto; object-fit:cover; }
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
   .hero-inner{ grid-template-columns:1fr; }
-  .hero-badge{ order:-1; align-self:center; margin:0 auto; }
+  .hero-badge{ order:-1; align-self:center; margin:0 auto; width:min(340px,100%); }
   .hero-badge-mark{ margin-top:0; }
   .hero-3d{ aspect-ratio:4/3; }
   .histoire-grid,.zone-wrap,.contact-wrap{ grid-template-columns:1fr; }
