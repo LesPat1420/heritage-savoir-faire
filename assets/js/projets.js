@@ -1,13 +1,13 @@
-/* Généré — chantiers de Lou François. photos[0] = couverture. */
+/* Genere par scripts/build-albums.py — chantiers de Lou Francois. photos[0] = couverture. */
 window.PROJETS = [
  {
   "id": "longere",
   "titre": "Restauration complète d'une longère en pierre",
-  "resume": "D'une ruine à une maison habitable : reprise des murs, charpente neuve, préau, menuiseries et terrasse.",
+  "resume": "D'une ruine à une maison habitable : reprise des maçonneries, charpente neuve, extension ossature bois, préau en chêne, menuiseries et terrasse.",
   "photos": [
    {
     "src": "assets/img/realisations/longere/00.jpg",
-    "leg": "La longère restaurée, l'hiver suivant la fin du chantier"
+    "leg": "La longère restaurée sous la neige, l'hiver suivant la fin du chantier"
    },
    {
     "src": "assets/img/realisations/longere/01.jpg",
@@ -15,11 +15,11 @@ window.PROJETS = [
    },
    {
     "src": "assets/img/realisations/longere/02.jpg",
-    "leg": "Démolition des parties instables, tri des pierres"
+    "leg": "Toiture bâchée pendant la dépose de l'ancienne charpente"
    },
    {
     "src": "assets/img/realisations/longere/03.jpg",
-    "leg": "Reprise des maçonneries à la grue"
+    "leg": "Reprise des maçonneries à la grue, pierre par pierre"
    },
    {
     "src": "assets/img/realisations/longere/04.jpg",
@@ -27,210 +27,207 @@ window.PROJETS = [
    },
    {
     "src": "assets/img/realisations/longere/05.jpg",
-    "leg": "Le volume retrouvé, avant charpente définitive"
+    "leg": "Préau en chêne monté contre la façade"
    },
    {
     "src": "assets/img/realisations/longere/06.jpg",
-    "leg": "Escalier métallique d'accès à l'étage"
+    "leg": "Le préau vu de l'intérieur, bardage bois posé"
    },
    {
     "src": "assets/img/realisations/longere/07.jpg",
-    "leg": "Terrasse bois et garde-corps sur la façade sud"
+    "leg": "Chantier en cours : murs montés, terrassement autour"
    },
    {
     "src": "assets/img/realisations/longere/08.jpg",
-    "leg": "Préau en chêne monté sur la façade"
+    "leg": "Levage d'un panneau d'ossature pour l'extension"
    },
    {
     "src": "assets/img/realisations/longere/09.jpg",
-    "leg": "Le préau vu de dessous, bardage intérieur posé"
+    "leg": "Mur gouttereau rejointoyé à la chaux après reprise"
    },
    {
     "src": "assets/img/realisations/longere/10.jpg",
-    "leg": "Portes en chêne à pentures forgées et niche d'origine"
-   },
-   {
-    "src": "assets/img/realisations/longere/11.jpg",
-    "leg": "Encadrements en pierre restitués autour des portes"
-   },
-   {
-    "src": "assets/img/realisations/longere/12.jpg",
-    "leg": "Mur de refend rejointoyé à la chaux"
-   },
-   {
-    "src": "assets/img/realisations/longere/13.jpg",
     "leg": "Ammonite prise dans une pierre du pays, laissée apparente"
    },
    {
-    "src": "assets/img/realisations/longere/14.jpg",
-    "leg": "Platelage de la terrasse en cours de pose"
-   }
-  ]
- },
- {
-  "id": "lavoir",
-  "titre": "Lavoir sous charpente chêne, couverture tuile",
-  "resume": "Charpente traditionnelle taillée à l'atelier puis levée sur les murs anciens du lavoir, et couverture neuve.",
-  "photos": [
-   {
-    "src": "assets/img/realisations/lavoir/00.jpg",
-    "leg": "La charpente levée sur les murs de pierre du lavoir"
+    "src": "assets/img/realisations/longere/11.jpg",
+    "leg": "Porte en chêne à pentures forgées, niche d'origine restituée"
    },
    {
-    "src": "assets/img/realisations/lavoir/01.jpg",
-    "leg": "Tracé et taille de la charpente à l'atelier"
+    "src": "assets/img/realisations/longere/12.jpg",
+    "leg": "Platelage de la terrasse bois en cours de pose"
    },
    {
-    "src": "assets/img/realisations/lavoir/02.jpg",
-    "leg": "Pièces de chêne prêtes à l'assemblage"
-   },
-   {
-    "src": "assets/img/realisations/lavoir/03.jpg",
-    "leg": "Montage des fermes sur site"
-   },
-   {
-    "src": "assets/img/realisations/lavoir/04.jpg",
-    "leg": "Contrefiches courbes et assemblages apparents"
-   },
-   {
-    "src": "assets/img/realisations/lavoir/05.jpg",
-    "leg": "Charpente complète, avant couverture"
-   },
-   {
-    "src": "assets/img/realisations/lavoir/06.jpg",
-    "leg": "Écran de sous-toiture et liteaunage"
-   },
-   {
-    "src": "assets/img/realisations/lavoir/07.jpg",
-    "leg": "Couverture terminée en tuile de pays"
-   }
-  ]
- },
- {
-  "id": "abri",
-  "titre": "Abri de jardin en ossature bois et bardage",
-  "resume": "Un abri de A à Z : plancher, ossature, charpente, bardage douglas et couverture tuile.",
-  "photos": [
-   {
-    "src": "assets/img/realisations/abri/00.jpg",
-    "leg": "L'abri terminé, portes en bois et bardage douglas"
-   },
-   {
-    "src": "assets/img/realisations/abri/01.jpg",
-    "leg": "Plancher bois sur plots béton"
-   },
-   {
-    "src": "assets/img/realisations/abri/02.jpg",
-    "leg": "Montage des panneaux d'ossature"
-   },
-   {
-    "src": "assets/img/realisations/abri/03.jpg",
-    "leg": "Charpente posée sur l'ossature"
-   },
-   {
-    "src": "assets/img/realisations/abri/04.jpg",
-    "leg": "Volume hors d'eau hors d'air"
-   },
-   {
-    "src": "assets/img/realisations/abri/05.jpg",
-    "leg": "Couverture tuile et bardage en cours"
-   },
-   {
-    "src": "assets/img/realisations/abri/06.jpg",
-    "leg": "Bardage à claire-voie posé sur trois faces"
+    "src": "assets/img/realisations/longere/13.jpg",
+    "leg": "Terrasse et garde-corps métal sur la façade sud"
    }
   ]
  },
  {
   "id": "maison-courbe",
   "titre": "Maison contemporaine à toiture courbe",
-  "resume": "Ossature et charpente bois d'une maison neuve à toit courbe, bardage mélèze, planchers et terrasses.",
+  "resume": "Ossature et charpente bois d'une maison neuve à toit cintré : murs préfabriqués, planchers, charpente courbe, bardage cèdre et couverture zinc.",
   "photos": [
    {
     "src": "assets/img/realisations/maison-courbe/00.jpg",
-    "leg": "La maison livrée, bardage mélèze et toiture zinc courbe"
+    "leg": "Jonction du bardage cèdre et de la toiture zinc courbe"
    },
    {
     "src": "assets/img/realisations/maison-courbe/01.jpg",
-    "leg": "Façade côté entrée en fin de chantier"
+    "leg": "Ossature bois sous pare-pluie, naissance de la toiture cintrée"
    },
    {
     "src": "assets/img/realisations/maison-courbe/02.jpg",
-    "leg": "Ossature bois sous pare-pluie"
+    "leg": "Le galbe de la toiture se dessine sur la façade"
    },
    {
     "src": "assets/img/realisations/maison-courbe/03.jpg",
-    "leg": "Naissance de la toiture courbe"
+    "leg": "Levage d'un mur préfabriqué à la grue"
    },
    {
     "src": "assets/img/realisations/maison-courbe/04.jpg",
-    "leg": "Plancher de l'étage"
+    "leg": "Murs de refend en panneaux bois massif à l'étage"
    },
    {
     "src": "assets/img/realisations/maison-courbe/05.jpg",
-    "leg": "Levage des murs préfabriqués"
+    "leg": "Plancher de l'étage cloué sur solivage bois"
    },
    {
     "src": "assets/img/realisations/maison-courbe/06.jpg",
-    "leg": "Lou sur la charpente pendant le montage"
+    "leg": "Charpente de la toiture courbe vue depuis l'échafaudage"
    },
    {
     "src": "assets/img/realisations/maison-courbe/07.jpg",
-    "leg": "Réglage des arbalétriers courbes à l'étage"
+    "leg": "Pose du bardage cèdre vertical sur la façade"
    },
    {
     "src": "assets/img/realisations/maison-courbe/08.jpg",
-    "leg": "Pose du bardage mélèze"
+    "leg": "Depuis le pré : lucarne rampante et couverture zinc"
    },
    {
     "src": "assets/img/realisations/maison-courbe/09.jpg",
-    "leg": "Angle de toiture : jonction bardage / zinc"
-   },
-   {
-    "src": "assets/img/realisations/maison-courbe/10.jpg",
-    "leg": "La maison vue depuis le champ"
-   },
-   {
-    "src": "assets/img/realisations/maison-courbe/11.jpg",
-    "leg": "Volume annexe bardé, côté jardin"
+    "leg": "Volume principal et toiture cintrée, façade arrière"
    }
   ]
  },
  {
-  "id": "halle",
-  "titre": "Grande charpente courbe en lamellé-collé",
-  "resume": "Charpente courbe de grande portée pour un bâtiment agricole, montée à la grue.",
+  "id": "charpente",
+  "titre": "Charpente bois, du neuf à la restauration",
+  "resume": "Fermes, préaux, pergolas et grandes charpentes : taille à l'atelier, assemblages chevillés, levage à la grue, et reprise de charpentes anciennes.",
   "photos": [
    {
-    "src": "assets/img/realisations/halle/00.jpg",
-    "leg": "Le bâtiment terminé, longue toiture courbe"
+    "src": "assets/img/realisations/charpente/00.jpg",
+    "leg": "Charpente de préau : éventail de chevrons sur poinçon central"
    },
    {
-    "src": "assets/img/realisations/halle/01.jpg",
-    "leg": "Levage des arbalétriers courbes"
+    "src": "assets/img/realisations/charpente/01.jpg",
+    "leg": "Pergola en bois, entrait retroussé et poinçon mouluré"
    },
    {
-    "src": "assets/img/realisations/halle/02.jpg",
-    "leg": "Charpente en place sur la structure"
+    "src": "assets/img/realisations/charpente/02.jpg",
+    "leg": "Détail d'assemblage : arbalétriers, poinçon et aisseliers"
    },
    {
-    "src": "assets/img/realisations/halle/03.jpg",
-    "leg": "Façade vitrée sous la charpente"
+    "src": "assets/img/realisations/charpente/03.jpg",
+    "leg": "Levage d'une ferme préfabriquée à l'atelier"
    },
    {
-    "src": "assets/img/realisations/halle/04.jpg",
-    "leg": "Vue d'ensemble en fin de gros œuvre"
+    "src": "assets/img/realisations/charpente/04.jpg",
+    "leg": "Pergola de jardin sur poteaux maçonnés, couverture tuile"
    },
    {
-    "src": "assets/img/realisations/halle/05.jpg",
-    "leg": "Pièces de lamellé-collé livrées sur site"
+    "src": "assets/img/realisations/charpente/05.jpg",
+    "leg": "Pergola contemporaine vue de dessous, chevrons rythmés"
+   },
+   {
+    "src": "assets/img/realisations/charpente/06.jpg",
+    "leg": "Auvent en bois greffé sur une maison à ossature"
+   },
+   {
+    "src": "assets/img/realisations/charpente/07.jpg",
+    "leg": "Ferme reconstituée à blanc à l'atelier avant transport"
+   },
+   {
+    "src": "assets/img/realisations/charpente/08.jpg",
+    "leg": "Structure de préau en chêne adossée à une grange"
+   },
+   {
+    "src": "assets/img/realisations/charpente/09.jpg",
+    "leg": "Reprise d'une charpente ancienne, pièces neuves greffées"
+   },
+   {
+    "src": "assets/img/realisations/charpente/10.jpg",
+    "leg": "Grande charpente de bâtiment agricole en douglas"
+   },
+   {
+    "src": "assets/img/realisations/charpente/11.jpg",
+    "leg": "Charpente d'un bâtiment ouvert, portée sur poteaux bois"
+   },
+   {
+    "src": "assets/img/realisations/charpente/12.jpg",
+    "leg": "Levage à la grue d'un pan de charpente courbe"
+   },
+   {
+    "src": "assets/img/realisations/charpente/13.jpg",
+    "leg": "Ferme courbe déposée sur les murs maçonnés"
+   },
+   {
+    "src": "assets/img/realisations/charpente/14.jpg",
+    "leg": "Charpente de préau terminée, vue d'ensemble"
+   }
+  ]
+ },
+ {
+  "id": "lavoir",
+  "titre": "Lavoir sous charpente chêne, couverture tuile",
+  "resume": "Charpente traditionnelle taillée à l'atelier puis levée sur les murs anciens du lavoir, contrefiches courbes apparentes et couverture neuve en tuile de pays.",
+  "photos": [
+   {
+    "src": "assets/img/realisations/lavoir/00.jpg",
+    "leg": "La charpente chêne levée sur les murs anciens du lavoir"
+   },
+   {
+    "src": "assets/img/realisations/lavoir/01.jpg",
+    "leg": "Fermes taillées et assemblées à blanc à l'atelier"
+   },
+   {
+    "src": "assets/img/realisations/lavoir/02.jpg",
+    "leg": "Pièces de chêne calées avant taille des assemblages"
+   },
+   {
+    "src": "assets/img/realisations/lavoir/03.jpg",
+    "leg": "Première ferme dressée contre le mur, contrefiches courbes"
+   },
+   {
+    "src": "assets/img/realisations/lavoir/04.jpg",
+    "leg": "Réglage d'une ferme sur tréteaux, serre-joints en place"
+   },
+   {
+    "src": "assets/img/realisations/lavoir/05.jpg",
+    "leg": "Détail d'un poteau : aisseliers courbes rayonnants"
+   },
+   {
+    "src": "assets/img/realisations/lavoir/06.jpg",
+    "leg": "Charpente complète, pannes et chevrons posés"
+   },
+   {
+    "src": "assets/img/realisations/lavoir/07.jpg",
+    "leg": "Platelage de rive posé sur la charpente"
+   },
+   {
+    "src": "assets/img/realisations/lavoir/08.jpg",
+    "leg": "Écran de sous-toiture et liteaunage sur les longs pans"
+   },
+   {
+    "src": "assets/img/realisations/lavoir/09.jpg",
+    "leg": "Couverture terminée en tuile de pays"
    }
   ]
  },
  {
   "id": "assemblages",
   "titre": "Assemblages traditionnels taillés à la main",
-  "resume": "Le cœur du métier : traits de Jupiter, tenons-mortaises et embrèvements taillés au ciseau et à la scie.",
+  "resume": "Le cœur du métier : traits de Jupiter, tenons-mortaises, enfourchements et embrèvements, tracés à l'épure puis taillés au ciseau et à la scie.",
   "photos": [
    {
     "src": "assets/img/realisations/assemblages/00.jpg",
@@ -238,164 +235,317 @@ window.PROJETS = [
    },
    {
     "src": "assets/img/realisations/assemblages/01.jpg",
-    "leg": "Enfourchement en about de pièce"
+    "leg": "Trait de Jupiter à mi-bois, vue rapprochée"
    },
    {
     "src": "assets/img/realisations/assemblages/02.jpg",
-    "leg": "Trait de Jupiter, vue de dessus"
+    "leg": "Enrayure : about mouluré prêt à l'assemblage"
    },
    {
     "src": "assets/img/realisations/assemblages/03.jpg",
-    "leg": "Sifflet et clé d'un trait de Jupiter"
+    "leg": "Double trait de Jupiter aligné sur tréteaux"
    },
    {
     "src": "assets/img/realisations/assemblages/04.jpg",
-    "leg": "Assemblage moisé sur poteau"
+    "leg": "Assemblage tridimensionnel poteau / entrait / lien"
    },
    {
     "src": "assets/img/realisations/assemblages/05.jpg",
-    "leg": "Embrèvement tracé sur pièce ancienne"
+    "leg": "Épure tracée à la règle sur une pièce ancienne"
    },
    {
     "src": "assets/img/realisations/assemblages/06.jpg",
-    "leg": "Trait de Jupiter ouvert avant emboîtage"
+    "leg": "Report du trait sur bois de réemploi"
    },
    {
     "src": "assets/img/realisations/assemblages/07.jpg",
-    "leg": "Croisement à mi-bois de deux entraits"
+    "leg": "Enfourchement ouvert avant emboîtage"
    },
    {
     "src": "assets/img/realisations/assemblages/08.jpg",
-    "leg": "Tenon et clé d'about"
+    "leg": "Croisement à mi-bois de deux pièces"
    },
    {
     "src": "assets/img/realisations/assemblages/09.jpg",
-    "leg": "Assemblage serré, une fois monté"
+    "leg": "Tenon et clé d'about, assemblage à sec"
+   },
+   {
+    "src": "assets/img/realisations/assemblages/10.jpg",
+    "leg": "Assemblage serré et chevillé, une fois monté"
    }
   ]
  },
  {
-  "id": "bonifacio",
-  "titre": "Charpente et terrasse bois face à la mer",
-  "resume": "Charpente préfabriquée à l'atelier puis levée à la grue, et grande terrasse bois, en Corse.",
+  "id": "escaliers",
+  "titre": "Escaliers bois, intérieur et extérieur",
+  "resume": "Escaliers droits, quart et double quart tournant, volées courbes à limon cintré, et emmarchements extérieurs en bois exotique.",
   "photos": [
    {
-    "src": "assets/img/realisations/bonifacio/00.jpg",
-    "leg": "Charpente posée, terrasse en construction"
+    "src": "assets/img/realisations/escaliers/00.jpg",
+    "leg": "Escalier balancé en chêne, vue plongeante"
    },
    {
-    "src": "assets/img/realisations/bonifacio/01.jpg",
-    "leg": "La ferme préassemblée, prête au levage"
+    "src": "assets/img/realisations/escaliers/01.jpg",
+    "leg": "Volée courbe à limon cintré et contremarches"
    },
    {
-    "src": "assets/img/realisations/bonifacio/02.jpg",
-    "leg": "Assemblage de la charpente au sol"
+    "src": "assets/img/realisations/escaliers/02.jpg",
+    "leg": "Escalier quart tournant en chêne clair"
    },
    {
-    "src": "assets/img/realisations/bonifacio/03.jpg",
-    "leg": "Levage à la grue au-dessus du bâti"
+    "src": "assets/img/realisations/escaliers/03.jpg",
+    "leg": "Escalier suspendu le long du mur, sans contremarche"
    },
    {
-    "src": "assets/img/realisations/bonifacio/04.jpg",
-    "leg": "Sous la charpente, terrasse et mur de pierre"
+    "src": "assets/img/realisations/escaliers/04.jpg",
+    "leg": "Escalier droit en frêne, rampe à balustres carrés"
    },
    {
-    "src": "assets/img/realisations/bonifacio/05.jpg",
-    "leg": "Toiture zinc terminée, vue du dessus"
+    "src": "assets/img/realisations/escaliers/05.jpg",
+    "leg": "Escalier double quartier tournant monté à l'atelier"
    },
    {
-    "src": "assets/img/realisations/bonifacio/06.jpg",
-    "leg": "Charpente de l'auvent sur mur maçonné"
+    "src": "assets/img/realisations/escaliers/06.jpg",
+    "leg": "Escalier sous comble, rampe à barreaux"
+   },
+   {
+    "src": "assets/img/realisations/escaliers/07.jpg",
+    "leg": "Emmarchement extérieur en bois exotique dans un jardin"
+   },
+   {
+    "src": "assets/img/realisations/escaliers/08.jpg",
+    "leg": "Escalier extérieur d'accès, garde-corps à claire-voie"
+   },
+   {
+    "src": "assets/img/realisations/escaliers/09.jpg",
+    "leg": "Terrasse à emmarchements successifs autour d'une piscine"
+   },
+   {
+    "src": "assets/img/realisations/escaliers/10.jpg",
+    "leg": "Cheminement et marches en bois exotique en pente douce"
    }
   ]
  },
  {
-  "id": "comble",
-  "titre": "Reprise d'une charpente de comble ancienne",
-  "resume": "Consolidation et remise en état d'une charpente de comble, pièce par pièce.",
+  "id": "couverture",
+  "titre": "Couverture : tuile, zinc et petits ouvrages",
+  "resume": "Réfection de toitures à deux pans et à croupe en tuile terre cuite, faîtages et arêtiers scellés, châssis de toit, auvents et petites couvertures bac acier.",
   "photos": [
    {
-    "src": "assets/img/realisations/comble/00.jpg",
-    "leg": "Le comble repris, assaini et renforcé"
+    "src": "assets/img/realisations/couverture/00.jpg",
+    "leg": "Toiture quatre pans refaite en tuile, châssis de toit intégré"
    },
    {
-    "src": "assets/img/realisations/comble/01.jpg",
-    "leg": "État d'origine : bois affaissés et fissures"
+    "src": "assets/img/realisations/couverture/01.jpg",
+    "leg": "Croupe de toiture en tuile terre cuite neuve"
    },
    {
-    "src": "assets/img/realisations/comble/02.jpg",
-    "leg": "Appuis de charpente à reprendre"
+    "src": "assets/img/realisations/couverture/02.jpg",
+    "leg": "Réfection de couverture sur charpente conservée"
    },
    {
-    "src": "assets/img/realisations/comble/03.jpg",
-    "leg": "Renforts posés sur la première travée"
+    "src": "assets/img/realisations/couverture/03.jpg",
+    "leg": "Toiture à croupe terminée, faîtage et arêtiers scellés"
    },
    {
-    "src": "assets/img/realisations/comble/04.jpg",
-    "leg": "Seconde travée étayée puis reprise"
+    "src": "assets/img/realisations/couverture/04.jpg",
+    "leg": "Auvent de jardin couvert en tuile vernissée"
    },
    {
-    "src": "assets/img/realisations/comble/05.jpg",
-    "leg": "Détail d'un about de ferme greffé"
+    "src": "assets/img/realisations/couverture/05.jpg",
+    "leg": "Longue toiture rénovée, égouts et rives repris"
+   },
+   {
+    "src": "assets/img/realisations/couverture/06.jpg",
+    "leg": "Couverture bac acier sur un appentis"
+   },
+   {
+    "src": "assets/img/realisations/couverture/07.jpg",
+    "leg": "Petite toiture en tuile sur extension maçonnée"
+   }
+  ]
+ },
+ {
+  "id": "etaiement",
+  "titre": "Étaiement et reprise de structures",
+  "resume": "Chevalets, portiques et cintres bois pour soutenir un ouvrage le temps des travaux : arcs d'église, planchers, pignons et charpentes fragilisées.",
+  "photos": [
+   {
+    "src": "assets/img/realisations/etaiement/00.jpg",
+    "leg": "Étaiement d'une arche d'église par chevalets bois"
+   },
+   {
+    "src": "assets/img/realisations/etaiement/01.jpg",
+    "leg": "Chevalets sous un arc doubleau pendant les travaux"
+   },
+   {
+    "src": "assets/img/realisations/etaiement/02.jpg",
+    "leg": "Cintre et étais sous voûte peinte, reprise de charge"
+   },
+   {
+    "src": "assets/img/realisations/etaiement/03.jpg",
+    "leg": "Nef étayée pour une intervention en couverture"
+   },
+   {
+    "src": "assets/img/realisations/etaiement/04.jpg",
+    "leg": "Contreventement provisoire d'une charpente à l'atelier"
+   },
+   {
+    "src": "assets/img/realisations/etaiement/05.jpg",
+    "leg": "Palée d'étaiement sous arc, à l'intérieur de l'édifice"
+   },
+   {
+    "src": "assets/img/realisations/etaiement/06.jpg",
+    "leg": "Portique bois autostable posé sur longrines"
+   },
+   {
+    "src": "assets/img/realisations/etaiement/07.jpg",
+    "leg": "Levage d'un portique d'étaiement préassemblé"
+   },
+   {
+    "src": "assets/img/realisations/etaiement/08.jpg",
+    "leg": "Encadrement de porte étrésillonné dans un mur de pierre"
+   },
+   {
+    "src": "assets/img/realisations/etaiement/09.jpg",
+    "leg": "Béquilles de soutien sous une toiture de hangar"
+   },
+   {
+    "src": "assets/img/realisations/etaiement/10.jpg",
+    "leg": "Chevalement soutenant un pignon fragilisé"
+   }
+  ]
+ },
+ {
+  "id": "terrasse",
+  "titre": "Terrasses bois et pergolas",
+  "resume": "Terrasses et plages de piscine en bois exotique, formes libres épousées, garde-corps et pergolas attenantes.",
+  "photos": [
+   {
+    "src": "assets/img/realisations/terrasse/00.jpg",
+    "leg": "Terrasse bois autour d'une piscine à débordement, face à la mer"
+   },
+   {
+    "src": "assets/img/realisations/terrasse/01.jpg",
+    "leg": "Grande terrasse en bois exotique ceinturant la piscine"
+   },
+   {
+    "src": "assets/img/realisations/terrasse/02.jpg",
+    "leg": "Plage de piscine en lames exotiques, forme libre épousée"
+   },
+   {
+    "src": "assets/img/realisations/terrasse/03.jpg",
+    "leg": "Terrasse et margelles bois entre jardin et bassin"
+   },
+   {
+    "src": "assets/img/realisations/terrasse/04.jpg",
+    "leg": "Cheminement bois sous la pergola, vers la piscine"
+   },
+   {
+    "src": "assets/img/realisations/terrasse/05.jpg",
+    "leg": "Platelage neuf sur structure, avant huilage"
+   },
+   {
+    "src": "assets/img/realisations/terrasse/06.jpg",
+    "leg": "Lames posées et garde-corps, terrasse sur pilotis"
+   },
+   {
+    "src": "assets/img/realisations/terrasse/07.jpg",
+    "leg": "Pergola bois et terrasse attenante en cours de finition"
+   }
+  ]
+ },
+ {
+  "id": "abri",
+  "titre": "Abri de jardin en ossature bois",
+  "resume": "Un abri de A à Z : plancher sur plots, ossature, charpente traditionnelle, bardage douglas et couverture tuile.",
+  "photos": [
+   {
+    "src": "assets/img/realisations/abri/00.jpg",
+    "leg": "L'abri terminé : bardage douglas et couverture tuile"
+   },
+   {
+    "src": "assets/img/realisations/abri/01.jpg",
+    "leg": "Plancher bois sur plots, prêt à recevoir l'ossature"
+   },
+   {
+    "src": "assets/img/realisations/abri/02.jpg",
+    "leg": "Montage des panneaux d'ossature sur le plancher"
+   },
+   {
+    "src": "assets/img/realisations/abri/03.jpg",
+    "leg": "Charpente traditionnelle posée sur l'ossature"
+   },
+   {
+    "src": "assets/img/realisations/abri/04.jpg",
+    "leg": "Volume clos, avant bardage et couverture"
+   },
+   {
+    "src": "assets/img/realisations/abri/05.jpg",
+    "leg": "Pose de la couverture tuile et de la sous-face"
+   },
+   {
+    "src": "assets/img/realisations/abri/06.jpg",
+    "leg": "Bardage à claire-voie posé sur les faces latérales"
    }
   ]
  },
  {
   "id": "divers",
   "titre": "Menuiserie et ouvrages sur mesure",
-  "resume": "En dehors de la charpente : tables, portes, escaliers, mobilier et pièces sculptées.",
+  "resume": "En dehors de la charpente : tables, portes, escaliers de meuble, bibliothèques, mobilier d'enfant et pièces cintrées ou sculptées à l'atelier.",
   "photos": [
    {
     "src": "assets/img/realisations/divers/00.jpg",
-    "leg": "Grande table en chêne massif, plateau à frises"
-   },
-   {
-    "src": "assets/img/realisations/divers/01.jpg",
     "leg": "Table ronde à plateau marqueté en rayons"
    },
    {
+    "src": "assets/img/realisations/divers/01.jpg",
+    "leg": "Grande table de ferme en chêne massif, plateau à frises"
+   },
+   {
     "src": "assets/img/realisations/divers/02.jpg",
-    "leg": "Table basse à entretoise courbe"
+    "leg": "Table basse à double entretoise courbe"
    },
    {
     "src": "assets/img/realisations/divers/03.jpg",
-    "leg": "Coffre en chêne gravé"
+    "leg": "Porte d'entrée contemporaine en bois, vitrage vertical"
    },
    {
     "src": "assets/img/realisations/divers/04.jpg",
-    "leg": "Portes de grange cintrées en douglas"
+    "leg": "Portes intérieures et parquet assortis, chêne clair"
    },
    {
     "src": "assets/img/realisations/divers/05.jpg",
-    "leg": "Pièce sculptée à la gouge"
+    "leg": "Tête de lit d'enfant gravée au pyrograveur"
    },
    {
     "src": "assets/img/realisations/divers/06.jpg",
-    "leg": "Arc lamellé-collé cintré à l'atelier"
+    "leg": "Portail de grange cintré en douglas"
    },
    {
     "src": "assets/img/realisations/divers/07.jpg",
-    "leg": "Échiquier marqueté, coffret à tiroir"
+    "leg": "Hotte de cheminée habillée de chêne mouluré"
    },
    {
     "src": "assets/img/realisations/divers/08.jpg",
-    "leg": "Hotte de cheminée en chêne"
+    "leg": "Bibliothèque murale toute hauteur sur mesure"
    },
    {
     "src": "assets/img/realisations/divers/09.jpg",
-    "leg": "Buffet de cuisine sur mesure"
+    "leg": "Arc lamellé-collé cintré à l'atelier"
    },
    {
     "src": "assets/img/realisations/divers/10.jpg",
-    "leg": "Bibliothèque murale toute hauteur"
+    "leg": "Ensemble mural sculpté dans une pièce à vivre"
    },
    {
     "src": "assets/img/realisations/divers/11.jpg",
-    "leg": "Escalier extérieur en bois"
+    "leg": "Lit cabane en pin pour chambre d'enfant"
    },
    {
     "src": "assets/img/realisations/divers/12.jpg",
-    "leg": "Lit cabane pour chambre d'enfant"
+    "leg": "Plateau de dames chinoises tourné et percé"
    }
   ]
  }

@@ -196,7 +196,7 @@ img.polaroid-img{ display:block; width:100%; height:auto; object-fit:cover; }
 .steps p{ margin:0; color:var(--ink-2); }
 
 /* ---------- Zone ---------- */
-.zone-wrap{ display:grid; grid-template-columns:1.3fr 1fr; gap:clamp(2rem,5vw,4rem); align-items:center; }
+.zone-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,3.4rem); align-items:start; }
 .zone-wrap p{ color:var(--ink-2); margin:0; }
 .tags{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.7rem; }
 .tags li{
@@ -234,14 +234,6 @@ img.polaroid-img{ display:block; width:100%; height:auto; object-fit:cover; }
 .js .reveal.is-in{ opacity:1; transform:none; }
 @media (prefers-reduced-motion:reduce){ .js .reveal{ opacity:1; transform:none; } }
 
-/* ---------- Retour au choix des maquettes ---------- */
-.back-versions{
-  position:fixed; left:12px; bottom:12px; z-index:150;
-  font-family:var(--body); font-size:.82rem; background:var(--ink); color:var(--paper);
-  padding:.4rem .7rem; border-radius:6px; text-decoration:none; opacity:.75;
-}
-.back-versions:hover{ opacity:1; color:#fff; }
-
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
   .hero-inner{ grid-template-columns:1fr; }
@@ -251,6 +243,8 @@ img.polaroid-img{ display:block; width:100%; height:auto; object-fit:cover; }
   .histoire-grid,.zone-wrap,.contact-wrap{ grid-template-columns:1fr; }
   .wall{ grid-template-columns:repeat(2,1fr); }
   .steps{ grid-template-columns:1fr; gap:2rem; }
+  .zone-map{ max-width:460px; }
+  .zone-map .map-frame{ height:300px; }
 }
 @media (max-width:720px){
   .burger{
@@ -272,3 +266,55 @@ img.polaroid-img{ display:block; width:100%; height:auto; object-fit:cover; }
 @media (max-width:520px){
   .wall{ grid-template-columns:1fr; max-width:320px; margin-inline:auto; }
 }
+
+/* ============================================================
+   Hero — diaporama logo <-> modèles 3D  (repris de la v4)
+   ============================================================ */
+.hero-stage{ position:relative; width:min(340px,100%); aspect-ratio:1/1; margin-inline:auto; }
+.hero-stage .hero-logo{
+  position:absolute; inset:0; margin:auto; width:100%; height:100%;
+  object-fit:contain; border:0; border-radius:0; background:none; mix-blend-mode:normal;
+}
+.hero-stage .hero-3d{
+  position:absolute; inset:0; width:100%; height:100%; padding:0;
+  aspect-ratio:auto; cursor:grab; touch-action:none;
+}
+.hero-stage .hero-3d:active{ cursor:grabbing; }
+.hero-stage .hero-3d canvas{ position:absolute; inset:0; width:100%; height:100%; }
+/* on montre le logo OU le modèle, jamais les deux */
+.hero-stage:not(.is-logo) .hero-logo{ display:none; }
+.hero-stage.is-logo .hero-3d{ visibility:hidden; }
+.hero-3d-arrow{
+  appearance:none; cursor:pointer; position:absolute; top:50%; transform:translateY(-50%);
+  z-index:4; background:none; border:0; padding:.1rem .4rem;
+  font-family:var(--disp); font-size:2.4rem; line-height:1; color:var(--ink);
+  opacity:.65; transition:opacity .2s, color .15s;
+}
+.hero-3d-arrow[data-dir="prev"]{ left:-.7rem; }
+.hero-3d-arrow[data-dir="next"]{ right:-.7rem; }
+.hero-3d-arrow:hover{ opacity:1; color:var(--wood-2); }
+@media (prefers-reduced-motion:reduce){ .hero-3d-arrow{ transition:none; } }
+
+/* ============================================================
+   Carte de la zone d'intervention  (reprise de la v4)
+   ============================================================ */
+.zone-map{
+  margin:0; border:2px solid var(--ink); border-radius:8px;
+  box-shadow:6px 6px 0 var(--forest-2); background:var(--card); overflow:hidden;
+}
+/* le cadre rogne la barre d'attribution native de l'iframe OSM ;
+   l'attribution « © OpenStreetMap » requise est reportée dans la légende */
+.zone-map .map-frame{ position:relative; height:380px; overflow:hidden; }
+.zone-map iframe{ position:absolute; left:-2px; top:0; width:calc(100% + 4px); height:calc(100% + 58px); border:0; }
+.zone-map figcaption{
+  font-family:var(--body); font-size:.85rem; color:var(--ink-2);
+  padding:.7rem .9rem; border-top:2px solid var(--ink);
+}
+.zone-map figcaption a{ color:var(--wood-2); }
+
+/* ---------- Formulaire : anti-spam + accusé d'envoi ---------- */
+.form-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.form-status{ margin:.9rem 0 0; font-family:var(--disp); font-weight:600; font-size:1rem; }
+.form-status.is-ok{ color:var(--forest); }
+.form-status.is-err{ color:var(--brick); }
+.form-status.is-err a{ color:var(--brick); }

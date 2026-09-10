@@ -1,137 +1,400 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>L'Héritage d'un savoir-faire — 4 maquettes au choix</title>
-<meta name="description" content="Quatre directions graphiques pour le site de Lou François. Cliquez sur une colonne pour explorer la version.">
-<meta name="robots" content="noindex">
+<title>L'Héritage d'un savoir-faire — Lou François, charpentier-conseil dans le Morvan</title>
+<meta name="description" content="Moi c'est Lou. Trente ans sur les toits du Morvan, et aujourd'hui à vos côtés : conseils, plans, chiffrage, démarches en mairie et formation à l'atelier, autour du bois et de la charpente.">
+<meta property="og:title" content="L'Héritage d'un savoir-faire — Lou François">
+<meta property="og:description" content="Trente ans de charpente dans le Morvan, aujourd'hui au service de vos projets : conseil, plans, chiffrage, démarches, formation.">
+<meta property="og:type" content="website">
 <link rel="icon" href="assets/img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Caveat:wght@700&family=Cinzel:wght@500;600&family=EB+Garamond:ital@0;1&family=Fraunces:opsz,wght@9..144,500..600&family=Oswald:wght@400;500&family=Spectral:wght@400&display=swap" rel="stylesheet">
-<style>
-  *,*::before,*::after{ box-sizing:border-box; }
-  html,body{ margin:0; height:100%; }
-  body{ font-family:"EB Garamond",Georgia,serif; background:#1c1712; color:#2e2013; overflow-x:hidden; }
-
-  .tag{
-    position:fixed; top:0; left:0; right:0; z-index:20; display:flex; justify-content:space-between;
-    align-items:center; gap:1rem; padding:.7rem 1.1rem; pointer-events:none;
-    font-family:"Oswald",sans-serif; letter-spacing:.14em; text-transform:uppercase; font-size:.66rem;
-    color:#f3e8ce; mix-blend-mode:difference;
-  }
-
-  .chooser{ display:flex; min-height:100dvh; }
-
-  .col{
-    position:relative; flex:1 1 0; min-width:0; display:flex; flex-direction:column;
-    justify-content:center; align-items:center; text-align:center;
-    padding:clamp(1.5rem,4vw,3rem); text-decoration:none;
-    transition:flex-grow .45s cubic-bezier(.4,0,.2,1), filter .3s ease;
-    overflow:hidden;
-  }
-  .col + .col{ border-left:1px solid rgba(0,0,0,.18); }
-  .chooser:hover .col{ filter:saturate(.72) brightness(.94); }
-  .chooser .col:hover{ flex-grow:1.6; filter:none; }
-  .col:focus-visible{ outline:4px solid #fff; outline-offset:-10px; }
-
-  .num{ font-size:1rem; letter-spacing:.35em; opacity:.6; margin-bottom:1.4rem; font-family:"Oswald",sans-serif; }
-  .style-name{ line-height:1; margin:0 0 1rem; }
-  .desc{ max-width:24ch; font-size:1.05rem; line-height:1.5; margin:0 0 2rem; opacity:.9; }
-  .go{
-    font-family:"Oswald",sans-serif; text-transform:uppercase; letter-spacing:.16em; font-size:.78rem;
-    padding-bottom:.3rem; border-bottom:2px solid currentColor;
-    opacity:0; transform:translateY(8px); transition:opacity .3s ease, transform .3s ease;
-  }
-  .col:hover .go,.col:focus-visible .go{ opacity:1; transform:none; }
-  .art{ position:absolute; inset:auto 0 -10% 0; height:45%; opacity:.16; pointer-events:none; }
-
-  /* --- Colonne 1 : Cabinet d'architecte --- */
-  .c-archi{ background:#f3ebdd; color:#2e2013; }
-  .c-archi .style-name{ font-family:"Cinzel",serif; font-weight:600; font-size:clamp(1.6rem,3.4vw,2.4rem); letter-spacing:.02em; }
-  .c-archi .num{ color:#43563a; }
-  .c-archi .art{ background:
-      linear-gradient(#d8c8ae 1px,transparent 1px) 0 0/100% 26px,
-      linear-gradient(90deg,#d8c8ae 1px,transparent 1px) 0 0/26px 100%; opacity:.5; }
-
-  /* --- Colonne 2 : Atelier --- */
-  .c-atelier{
-    background:#efe0c3; color:#3b2a19;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.23 0 0 0 0 0.16 0 0 0 0 0.09 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  .c-atelier .style-name{ font-family:"Fraunces",serif; font-weight:600; font-size:clamp(1.7rem,3.6vw,2.5rem); }
-  .c-atelier .num{ color:#b1502e; }
-  .c-atelier .flourish{ font-family:"Caveat",cursive; font-size:1.7rem; color:#8a4d22; display:block; margin-bottom:.4rem; transform:rotate(-3deg); }
-
-  /* --- Colonne 3 : Almanach --- */
-  .c-almanach{ background:#2f4030; color:#f3e8ce; }
-  .c-almanach .style-name{ font-family:"Alfa Slab One",serif; font-weight:400; text-transform:uppercase; font-size:clamp(1.5rem,3.2vw,2.2rem); line-height:1.05; }
-  .c-almanach .num{ color:#c2872a; }
-  .c-almanach .desc{ font-family:"Spectral","EB Garamond",serif; }
-  .c-almanach .rule{ display:flex; align-items:center; gap:.7rem; margin-bottom:1.1rem; font-size:1.2rem; }
-  .c-almanach .rule::before,.c-almanach .rule::after{ content:""; width:34px; height:2px; background:currentColor; }
-
-  /* --- Colonne 4 : Cabinet & atelier --- */
-  .c-cabatelier{ background:#f3e8ce; color:#221b11; box-shadow:inset 0 0 0 3px #2f4030; }
-  .c-cabatelier .style-name{ font-family:"Fraunces",serif; font-weight:600; font-size:clamp(1.55rem,3.3vw,2.3rem); }
-  .c-cabatelier .num{ color:#9c3a22; }
-  .c-cabatelier .desc{ font-family:"Spectral","EB Garamond",serif; }
-  .c-cabatelier .art{ background:
-      linear-gradient(#cbb98d 1px,transparent 1px) 0 0/100% 24px,
-      linear-gradient(90deg,#cbb98d 1px,transparent 1px) 0 0/24px 100%; opacity:.55; }
-
-  @media (max-width:760px){
-    .chooser{ flex-direction:column; }
-    .col{ min-height:60svh; }
-    .col + .col{ border-left:0; border-top:1px solid rgba(0,0,0,.18); }
-    .chooser:hover .col{ filter:none; }
-    .chooser .col:hover{ flex-grow:1; }
-    .go{ opacity:1; transform:none; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/atelier.css?v=6">
+<link rel="stylesheet" href="assets/css/lightbox.css?v=3">
+<script>document.documentElement.className = 'js';</script>
 </head>
 <body>
 
-<div class="tag">
-  <span>L'Héritage d'un savoir-faire</span>
-  <span>Maquettes — cliquez une colonne</span>
-</div>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
 
-<nav class="chooser" aria-label="Choix de la maquette">
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#haut" id="haut">
+      <img src="assets/img/logo-original.jpg" alt="Logo L'Héritage d'un savoir-faire" class="brand-mark">
+      <span class="brand-text">L'Héritage<br><em>d'un savoir-faire</em></span>
+    </a>
+    <button class="burger" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" class="nav">
+      <a href="#faire">Ce que je fais</a>
+      <a href="#histoire">Mon histoire</a>
+      <a href="#chantiers">Chantiers</a>
+      <a href="#deroule">Comment ça se passe</a>
+      <a href="#ecrire" class="nav-phone">06 32 90 49 41</a>
+    </nav>
+  </div>
+</header>
 
-  <a class="col c-archi" href="v1.html" aria-label="Version 1 — Cabinet d'architecte">
-    <span class="art" aria-hidden="true"></span>
-    <span class="num">Version 1</span>
-    <p class="style-name">Cabinet<br>d'architecte</p>
-    <p class="desc">Sobre et précis. Le trait, la matière, beaucoup d'air.</p>
-    <span class="go">Découvrir →</span>
-  </a>
+<main id="contenu">
 
-  <a class="col c-atelier" href="v2.html" aria-label="Version 2 — Atelier">
-    <span class="num">Version 2</span>
-    <p class="style-name"><span class="flourish">l'esprit</span>Atelier</p>
-    <p class="desc">Chaleureux et fait main. Comme une conversation avec Lou.</p>
-    <span class="go">Découvrir →</span>
-  </a>
+  <!-- ================ HERO ================ -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-words">
+        <p class="hello">Bonjour&nbsp;! Moi c'est Lou.</p>
+        <h1>Trente ans passés sur les toits, du Morvan à la Corse.
+          <span class="hl">Aujourd'hui, à vos côtés.</span></h1>
+        <p class="hero-p">
+          Je ne monte plus à l'échelle, mais tout le reste je le connais par cœur&nbsp;:
+          lire un plan, tracer une épure, calculer une charge, choisir le bon bois,
+          chiffrer un chantier. Ce savoir-faire, je le mets maintenant au service des
+          particuliers, des artisans, des architectes… et des jeunes qui apprennent le métier.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-fill" href="#ecrire">Parlons de votre projet</a>
+          <a class="btn btn-line" href="tel:+33632904941">06&nbsp;32&nbsp;90&nbsp;49&nbsp;41</a>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-stage is-logo" id="hero-stage">
+          <img class="hero-logo" src="assets/img/logo.png" alt="L'Héritage d'un savoir-faire">
+          <div class="hero-3d" id="hero-3d" hidden>
+            <canvas id="hero-charpente" aria-hidden="true"></canvas>
+          </div>
+          <button class="hero-3d-arrow" type="button" data-dir="prev" aria-label="Précédent">‹</button>
+          <button class="hero-3d-arrow" type="button" data-dir="next" aria-label="Suivant">›</button>
+        </div>
+      </div>
+    </div>
+    <svg class="divider divider-bottom" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C120,6 220,40 340,22 C460,4 560,40 680,22 C800,6 900,40 1020,22 C1100,10 1160,16 1200,22 L1200,44 L0,44 Z"/></svg>
+  </section>
 
-  <a class="col c-almanach" href="v3.html" aria-label="Version 3 — Almanach">
-    <span class="art" aria-hidden="true"></span>
-    <span class="num">Version 3</span>
-    <p class="style-name"><span class="rule">✦</span>Almanach<br>imprimé</p>
-    <p class="desc">Une affiche ancienne. Symétrique, dense, un brin solennel.</p>
-    <span class="go">Découvrir →</span>
-  </a>
+  <!-- ================ BANDEAU ================ -->
+  <div class="strip">
+    <div class="wrap strip-inner">
+      <span>✶ Conseil</span><span>✶ Plans &amp; débit</span><span>✶ Chiffrage</span>
+      <span>✶ Démarches en mairie</span><span>✶ Formation à l'atelier</span>
+    </div>
+  </div>
 
-  <a class="col c-cabatelier" href="v4.html" aria-label="Version 4 — Cabinet & atelier">
-    <span class="art" aria-hidden="true"></span>
-    <span class="num">Version 4</span>
-    <p class="style-name">Cabinet<br>&amp; atelier</p>
-    <p class="desc">La grille carrée de la 1, les couleurs de la 3, le ton direct de la 2.</p>
-    <span class="go">Découvrir →</span>
-  </a>
+  <!-- ================ CE QUE JE FAIS ================ -->
+  <section class="section" id="faire">
+    <div class="wrap">
+      <p class="kicker">Ce que je peux faire pour vous</p>
+      <h2 class="h2">Quatre coups de main, selon qui vous êtes</h2>
 
-</nav>
+      <div class="menu">
 
+        <article class="dish">
+          <div class="dish-ico">
+            <img src="assets/img/cartes/expertise.jpg" alt="Lou et une agente immobilière examinant la charpente d'une maison" loading="lazy">
+          </div>
+          <div class="dish-txt">
+            <h3>Un avis d'expert avant d'acheter ou de vendre</h3>
+            <p class="who">Pour les agences immobilières et les architectes</p>
+            <p>
+              Je regarde la charpente et la toiture, je repère ce qui cloche, et je vous
+              remets un chiffrage clair des travaux à prévoir. De quoi négocier ou monter
+              un projet en connaissance de cause.
+            </p>
+            <a class="talk" href="#ecrire">On en parle →</a>
+          </div>
+        </article>
+
+        <article class="dish">
+          <div class="dish-ico">
+            <img src="assets/img/cartes/plans.jpg" alt="Lou détaillant une liste de matériel à une cliente devant une charpente en cours" loading="lazy">
+          </div>
+          <div class="dish-txt">
+            <h3>Vos plans et vos bois, si vous faites les travaux vous-même</h3>
+            <p class="who">Pour les particuliers courageux</p>
+            <p>
+              Plans, épures, feuille de débit, liste de courses au mètre près et
+              pré-commande chez le fournisseur. Vous gardez le plaisir du chantier,
+              sans les erreurs qui coûtent cher.
+            </p>
+            <a class="talk" href="#ecrire">On en parle →</a>
+          </div>
+        </article>
+
+        <article class="dish">
+          <div class="dish-ico">
+            <img src="assets/img/cartes/mairie.jpg" alt="Lou et un client devant un organigramme de démarches d'urbanisme" loading="lazy">
+          </div>
+          <div class="dish-txt">
+            <h3>Le dossier de mairie, je m'en occupe</h3>
+            <p class="who">Pour les particuliers et les entreprises</p>
+            <p>
+              Déclaration préalable ou permis jusqu'à 150&nbsp;m²&nbsp;: abri de jardin,
+              nouvelle teinte de toit, Velux, lucarne, petite extension. Je monte le
+              dossier, je le dépose, je suis la réponse.
+            </p>
+            <a class="talk" href="#ecrire">On en parle →</a>
+          </div>
+        </article>
+
+        <article class="dish">
+          <div class="dish-ico">
+            <img src="assets/img/cartes/formation.jpg" alt="Lou montrant un tracé d'épure à un apprenti sur une pièce de bois" loading="lazy">
+          </div>
+          <div class="dish-txt">
+            <h3>Le trait et le calcul de charge, je les transmets</h3>
+            <p class="who">Pour les apprentis en charpente — CAP, BEP, BP</p>
+            <p>
+              Des séances pratiques, sur le chantier ou à l'atelier&nbsp;: méthode d'épure,
+              lecture de plan, dimensionnement, vérification de l'ouvrage. En renfort d'un
+              centre de formation ou aux côtés d'un patron.
+            </p>
+            <a class="talk" href="#ecrire">On en parle →</a>
+          </div>
+        </article>
+
+      </div>
+      <p class="price-note">Chaque projet est différent&nbsp;: je fais toujours un devis clair et gratuit avant de commencer.</p>
+    </div>
+    <svg class="divider" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C120,6 220,40 340,22 C460,4 560,40 680,22 C800,6 900,40 1020,22 C1100,10 1160,16 1200,22 L1200,44 L0,44 Z"/></svg>
+  </section>
+
+  <!-- ================ MON HISTOIRE ================ -->
+  <section class="section section-wood" id="histoire">
+    <div class="wrap histoire-grid">
+      <div class="polaroid polaroid-tilt-l">
+        <img class="polaroid-img" style="aspect-ratio:4/5" src="assets/img/portrait-lou.jpg" alt="Lou François sur un chantier d'ossature bois, une panne sur l'épaule" loading="lazy" width="1097" height="1200">
+        <p class="polaroid-cap">Lou François, sur le chantier</p>
+      </div>
+      <div class="histoire-txt">
+        <p class="kicker">Mon histoire</p>
+        <h2 class="h2">Un métier appris dehors, par tous les temps</h2>
+        <p>
+          J'ai grandi dans le Morvan, entre les granges de pierre et les sapins. À seize ans,
+          apprenti chez un charpentier du coin&nbsp;; CAP, puis BP. Les premières années, c'était
+          les maisons neuves et les hangars agricoles — on apprend vite à lever une ferme sous
+          la pluie.
+        </p>
+        <p>
+          Ensuite, je me suis tourné vers les vieilles bâtisses&nbsp;: fermes, longères, lavoirs,
+          petites toitures d'église. Un travail de patience, où il faut comprendre l'ouvrage
+          avant d'y toucher et retrouver le geste d'origine.
+        </p>
+        <p>
+          Aujourd'hui, ma santé ne me permet plus le travail en hauteur. Plutôt que de tout
+          arrêter, j'ai eu envie de <strong>passer le relais</strong>&nbsp;: aider ceux qui
+          construisent, éclairer ceux qui doutent, et montrer le métier à ceux qui débutent.
+        </p>
+        <p class="signature">Lou François</p>
+      </div>
+    </div>
+    <svg class="divider" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C120,6 220,40 340,22 C460,4 560,40 680,22 C800,6 900,40 1020,22 C1100,10 1160,16 1200,22 L1200,44 L0,44 Z"/></svg>
+  </section>
+
+  <!-- ================ CHANTIERS ================ -->
+  <section class="section" id="chantiers">
+    <div class="wrap">
+      <p class="kicker">Quelques chantiers</p>
+      <h2 class="h2">Des ouvrages dont je suis fier</h2>
+      <p class="lead">Onze chantiers, du petit détail à la maison entière — de la Bourgogne à la Corse. Cliquez une photo, vous verrez tout le chantier.</p>
+      <div class="wall">
+        <figure class="polaroid polaroid-tilt-l"><button class="shot-open" data-projet="longere"><img class="polaroid-img" src="assets/img/realisations/longere/00.jpg" alt="Longère en pierre restaurée" loading="lazy" width="1400" height="1050"></button><figcaption>Une longère en ruine, remise debout</figcaption></figure>
+        <figure class="polaroid polaroid-tilt-r"><button class="shot-open" data-projet="maison-courbe"><img class="polaroid-img" src="assets/img/realisations/maison-courbe/00.jpg" alt="Maison contemporaine à toiture bois courbe" loading="lazy" width="1400" height="1050"></button><figcaption>Une maison neuve à toit courbe</figcaption></figure>
+        <figure class="polaroid polaroid-tilt-r"><button class="shot-open" data-projet="charpente"><img class="polaroid-img" src="assets/img/realisations/charpente/00.jpg" alt="Charpente bois, préau et pergola" loading="lazy" width="1400" height="1050"></button><figcaption>La charpente, du neuf à la reprise</figcaption></figure>
+        <figure class="polaroid polaroid-tilt-l"><button class="shot-open" data-projet="lavoir"><img class="polaroid-img" src="assets/img/realisations/lavoir/00.jpg" alt="Charpente chêne d'un lavoir sur murs anciens" loading="lazy" width="1400" height="1050"></button><figcaption>Un lavoir recoiffé en chêne et tuile</figcaption></figure>
+        <figure class="polaroid polaroid-tilt-l"><button class="shot-open" data-projet="assemblages"><img class="polaroid-img" src="assets/img/realisations/assemblages/00.jpg" alt="Assemblage de charpente taillé à la main" loading="lazy" width="1400" height="1050"></button><figcaption>Les assemblages, taillés à la main</figcaption></figure>
+        <figure class="polaroid polaroid-tilt-r"><button class="shot-open" data-projet="escaliers"><img class="polaroid-img" src="assets/img/realisations/escaliers/00.jpg" alt="Escalier balancé en chêne" loading="lazy" width="1400" height="1050"></button><figcaption>Des escaliers, droits ou courbes</figcaption></figure>
+        <figure class="polaroid polaroid-tilt-r"><button class="shot-open" data-projet="couverture"><img class="polaroid-img" src="assets/img/realisations/couverture/00.jpg" alt="Toiture en tuile terre cuite refaite" loading="lazy" width="1400" height="1050"></button><figcaption>La couverture, tuile et zinc</figcaption></figure>
+        <figure class="polaroid polaroid-tilt-l"><button class="shot-open" data-projet="etaiement"><img class="polaroid-img" src="assets/img/realisations/etaiement/00.jpg" alt="Étaiement bois d'une arche d'église" loading="lazy" width="1400" height="1050"></button><figcaption>Étayer avant de reprendre</figcaption></figure>
+        <figure class="polaroid polaroid-tilt-l"><button class="shot-open" data-projet="terrasse"><img class="polaroid-img" src="assets/img/realisations/terrasse/00.jpg" alt="Terrasse bois autour d'une piscine" loading="lazy" width="1400" height="1050"></button><figcaption>Terrasses et pergolas</figcaption></figure>
+        <figure class="polaroid polaroid-tilt-r"><button class="shot-open" data-projet="abri"><img class="polaroid-img" src="assets/img/realisations/abri/00.jpg" alt="Abri de jardin en ossature bois" loading="lazy" width="1400" height="1050"></button><figcaption>Un abri de jardin, de A à Z</figcaption></figure>
+        <figure class="polaroid polaroid-tilt-l"><button class="shot-open" data-projet="divers"><img class="polaroid-img" src="assets/img/realisations/divers/00.jpg" alt="Table ronde à plateau marqueté" loading="lazy" width="1400" height="1050"></button><figcaption>Et tout ce qui se fait à l'établi</figcaption></figure>
+      </div>
+    </div>
+    <svg class="divider" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C120,6 220,40 340,22 C460,4 560,40 680,22 C800,6 900,40 1020,22 C1100,10 1160,16 1200,22 L1200,44 L0,44 Z"/></svg>
+  </section>
+
+  <!-- ================ COMMENT CA SE PASSE ================ -->
+  <section class="section section-cream" id="deroule">
+    <div class="wrap">
+      <p class="kicker">Comment ça se passe</p>
+      <h2 class="h2">Simple, et sans mauvaise surprise</h2>
+      <ol class="steps">
+        <li>
+          <span class="num">1</span>
+          <h3>On discute</h3>
+          <p>Un coup de fil ou un message. Vous me racontez le projet, je vous dis franchement si je suis la bonne personne.</p>
+        </li>
+        <li>
+          <span class="num">2</span>
+          <h3>Je vous fais un devis</h3>
+          <p>Clair, détaillé, gratuit. Vous savez exactement ce que vous payez et ce que vous recevez.</p>
+        </li>
+        <li>
+          <span class="num">3</span>
+          <h3>Je vous rends le travail</h3>
+          <p>Rapport, plans, feuille de débit ou dossier de mairie — dans le délai annoncé, et on en reparle si besoin.</p>
+        </li>
+      </ol>
+    </div>
+    <svg class="divider" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C120,6 220,40 340,22 C460,4 560,40 680,22 C800,6 900,40 1020,22 C1100,10 1160,16 1200,22 L1200,44 L0,44 Z"/></svg>
+  </section>
+
+  <!-- ================ ZONE ================ -->
+  <section class="section" id="zone">
+    <div class="wrap zone-wrap">
+      <div>
+        <p class="kicker">Où j'interviens</p>
+        <h2 class="h2">Le Morvan pour base, la route pour le reste</h2>
+        <p>
+          Je suis installé dans le Morvan, mais le métier m'a promené — de la Bretagne à
+          la Bourgogne, et jusqu'en Corse. Pour venir sur un chantier, comptez une petite
+          heure autour de Saulieu&nbsp;; plus loin, on en discute. Un chiffrage sur plans
+          ou un dossier de mairie, en revanche, se fait de partout.
+        </p>
+        <ul class="tags">
+          <li>Côte-d'Or</li><li>Nièvre</li><li>Saône-et-Loire</li><li>Yonne</li><li>Parc du Morvan</li><li>Corse</li><li>Études à distance</li>
+        </ul>
+      </div>
+      <figure class="zone-map">
+        <div class="map-frame">
+          <iframe
+            title="Carte de la zone d'intervention autour de Saulieu, dans le Morvan"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=2.15%2C46.35%2C6.25%2C48.35&amp;layer=mapnik&amp;marker=47.28223%2C4.23726"
+            loading="lazy" referrerpolicy="no-referrer"></iframe>
+        </div>
+        <figcaption>
+          Base à Saulieu (Côte-d'Or) · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a> ·
+          <a href="https://www.openstreetmap.org/?mlat=47.28223&amp;mlon=4.23726#map=16/47.28223/4.23726" target="_blank" rel="noopener">agrandir</a>
+        </figcaption>
+      </figure>
+    </div>
+    <svg class="divider" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C120,6 220,40 340,22 C460,4 560,40 680,22 C800,6 900,40 1020,22 C1100,10 1160,16 1200,22 L1200,44 L0,44 Z"/></svg>
+  </section>
+
+  <!-- ================ CONTACT ================ -->
+  <section class="section section-forest" id="ecrire">
+    <div class="wrap contact-wrap">
+      <div class="contact-hello">
+        <p class="kicker light">On se parle&nbsp;?</p>
+        <h2 class="h2 light">Racontez-moi votre projet</h2>
+        <p class="light-p">
+          Quelques lignes suffisent&nbsp;: ce que vous voulez faire, où, et pour quand.
+          Je vous rappelle vite.
+        </p>
+        <p class="big-phone"><a href="tel:+33632904941">06&nbsp;32&nbsp;90&nbsp;49&nbsp;41</a></p>
+        <p class="light-p">
+          <a href="mailto:contact@heritage-savoir-faire.fr">contact@heritage-savoir-faire.fr</a><br>
+          2&nbsp;chemin du Chatelot, 21210 Saulieu
+        </p>
+      </div>
+      <form class="note-form" id="contact-form"
+            data-to="contact@heritage-savoir-faire.fr"
+            action="https://formsubmit.co/contact@heritage-savoir-faire.fr" method="POST">
+        <input type="hidden" name="_subject" value="Nouveau message depuis le site">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <label class="form-hp" aria-hidden="true">Ne pas remplir<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label>
+        <label>Votre nom<input type="text" name="nom" required></label>
+        <label>Téléphone ou courriel<input type="text" name="coordonnees" required></label>
+        <label>Votre projet<textarea name="message" rows="5" required></textarea></label>
+        <button type="submit" class="btn btn-fill">Envoyer le message</button>
+        <p class="form-status" role="status" aria-live="polite" hidden></p>
+        <p class="mini">Votre message m'est envoyé directement par courriel. Pas de compte à créer, pas de cookie.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <img src="assets/img/logo-original.jpg" alt="" class="foot-mark">
+    <div>
+      <p class="foot-brand">L'Héritage d'un savoir-faire — Lou François</p>
+      <p class="foot-mini">
+        Fait main dans le Morvan. Entreprise individuelle en cours d'immatriculation —
+        mentions légales complètes à venir. Pas de cookies, pas de pistage.
+      </p>
+    </div>
+    <a href="#haut" class="foot-top">↑ Haut</a>
+  </div>
+</footer>
+
+<script src="assets/js/atelier.js"></script>
+<script src="assets/js/projets.js?v=2" defer></script>
+<script src="assets/js/galerie.js?v=2" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="assets/js/charpente3d.js?v=7" defer></script>
+<script>
+  /* Hero : diaporama logo -> modeles 3D -> retour au logo, 5 s par vue.
+     Toujours manipulable (fleches + rotation a la souris). */
+  window.addEventListener('load', function () {
+    var stage = document.getElementById('hero-stage');
+    var box = document.getElementById('hero-3d');
+    var c = document.getElementById('hero-charpente');
+    if (!stage || !box || !c) return;
+
+    var api = window.Charpente3D && window.Charpente3D.create(c, { interactive: true, autoSpeed: 0.004, dist: 18 });
+    if (!api) { box.remove(); return; }   // pas de WebGL : le logo reste seul
+    box.hidden = false;
+
+    var MODELS = api.count || 3;
+    var SLIDES = MODELS + 1;               // 0 = logo, 1..MODELS = modeles
+    var STEP = 5000;
+    var slide = 0, timer = null, held = false;
+
+    function show(n) {
+      slide = ((n % SLIDES) + SLIDES) % SLIDES;
+      var logo = slide === 0;
+      stage.classList.toggle('is-logo', logo);
+      if (logo) { api.stop(); }
+      else { api.setModel(slide - 1); api.start(); }
+    }
+    function tick() {
+      clearTimeout(timer);
+      if (held) return;
+      timer = setTimeout(function () { show(slide + 1); tick(); }, STEP);
+    }
+    function go(n) { show(n); tick(); }
+
+    show(0); tick();
+
+    stage.querySelectorAll('.hero-3d-arrow').forEach(function (b) {
+      b.addEventListener('click', function () { go(slide + (b.dataset.dir === 'prev' ? -1 : 1)); });
+    });
+    c.addEventListener('pointerdown', function () { held = true; clearTimeout(timer); });
+    window.addEventListener('pointerup', function () { if (held) { held = false; tick(); } });
+  });
+</script>
+<script>
+  /* Formulaire de contact : envoi par courriel via FormSubmit, sans rechargement.
+     Si le JS est indisponible, le <form action> assure le repli. */
+  (function () {
+    var f = document.getElementById('contact-form');
+    if (!f || !window.fetch) return;
+    var status = f.querySelector('.form-status');
+    var to = f.getAttribute('data-to');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = f.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      status.hidden = false;
+      status.className = 'form-status';
+      status.textContent = 'Envoi en cours…';
+      fetch('https://formsubmit.co/ajax/' + encodeURIComponent(to), {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(f)
+      }).then(function (r) { return r.json(); }).then(function (r) {
+        if (!r || (r.success !== 'true' && r.success !== true)) throw new Error('ko');
+        f.reset();
+        status.className = 'form-status is-ok';
+        status.textContent = 'Merci, votre message est parti. Je vous réponds vite.';
+      }).catch(function () {
+        status.className = 'form-status is-err';
+        status.innerHTML = "L'envoi a échoué. Écrivez-moi à <a href=\"mailto:" + to + '">' + to + '</a> ou au 06 32 90 49 41.';
+      }).then(function () { btn.disabled = false; });
+    });
+  })();
+</script>
 </body>
 </html>
