@@ -41,7 +41,26 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 img{ max-width:100%; display:block; }
+picture{ display:contents; }
 a{ color:var(--wood-2); }
+
+/* ---------- Focus visible (accessibilité) ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible{
+  outline:3px solid var(--forest-2);
+  outline-offset:2px;
+  border-radius:2px;
+}
+.section-forest a:focus-visible,
+.section-forest button:focus-visible,
+.section-forest input:focus-visible,
+.section-forest textarea:focus-visible{
+  outline-color:var(--honey);
+}
 
 .wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding:0 clamp(1.1rem,4vw,2.4rem); }
 
@@ -318,3 +337,39 @@ img.polaroid-img{ display:block; width:100%; height:auto; object-fit:cover; }
 .form-status.is-ok{ color:var(--forest); }
 .form-status.is-err{ color:var(--brick); }
 .form-status.is-err a{ color:var(--brick); }
+
+/* ============================================================
+   Points indicateurs sous le carrousel du hero
+   ============================================================ */
+.hero-dots{
+  display:flex; justify-content:center; gap:.55rem; margin:.2rem 0 0; padding:0;
+  list-style:none;
+}
+.hero-dots button{
+  appearance:none; cursor:pointer; width:11px; height:11px; padding:0;
+  border:2px solid var(--ink); border-radius:50%; background:var(--card);
+  transition:background .18s, transform .18s;
+}
+.hero-dots button[aria-current="true"]{ background:var(--wood); transform:scale(1.15); }
+@media (prefers-reduced-motion:reduce){ .hero-dots button{ transition:none; } }
+
+/* ============================================================
+   Barre d'action fixe (mobile) — Appeler / Écrire
+   ============================================================ */
+.action-bar{ display:none; }
+@media (max-width:720px){
+  .action-bar{
+    position:fixed; left:0; right:0; bottom:0; z-index:90;
+    display:flex; gap:.5rem; padding:.5rem .6rem calc(.5rem + env(safe-area-inset-bottom));
+    background:var(--paper); border-top:2px solid var(--ink);
+    box-shadow:0 -3px 12px rgba(59,42,25,.14);
+  }
+  .action-bar a{
+    flex:1; text-align:center; text-decoration:none; font-family:var(--disp); font-weight:600;
+    font-size:1rem; padding:.7rem .5rem; border:2px solid var(--ink); border-radius:10px;
+  }
+  .action-bar .ab-call{ background:var(--forest); color:#fff; }
+  .action-bar .ab-write{ background:var(--card); color:var(--ink); }
+  body{ padding-bottom:4.2rem; }
+  .foot{ padding-bottom:5.4rem; }
+}

@@ -68,9 +68,12 @@
 
   var cur = null, idx = 0, lastFocus = null;
 
+  function webpOf(src) { return src.replace(/\.jpg$/i, '.webp'); }
+
   function render() {
     var ph = cur.photos[idx];
-    elImg.src = ph.src;
+    elImg.onerror = function () { elImg.onerror = null; elImg.src = ph.src; };
+    elImg.src = webpOf(ph.src);
     elImg.alt = ph.leg || cur.titre;
     elCap.textContent = ph.leg || '';
     elTitle.textContent = cur.titre;
@@ -84,7 +87,7 @@
     if (btns[idx]) btns[idx].scrollIntoView({ block: 'nearest', inline: 'center' });
     // préchargement voisins
     [idx - 1, idx + 1].forEach(function (j) {
-      if (cur.photos[j]) { var im = new Image(); im.src = cur.photos[j].src; }
+      if (cur.photos[j]) { var im = new Image(); im.src = webpOf(cur.photos[j].src); }
     });
   }
 
@@ -94,7 +97,7 @@
       var b = document.createElement('button');
       b.type = 'button';
       b.setAttribute('aria-label', 'Photo ' + (i + 1));
-      b.innerHTML = '<img src="' + ph.src + '" alt="" loading="lazy">';
+      b.innerHTML = '<img src="' + ph.src.replace(/\.jpg$/i, '-t.webp') + '" alt="" loading="lazy" width="120" height="90">';
       b.addEventListener('click', function () { idx = i; render(); });
       elFilm.appendChild(b);
     });
