@@ -3,3 +3,4 @@ apercu-*.png
 http.log
 *.log
 _dossier-lou/
+.deploy/
