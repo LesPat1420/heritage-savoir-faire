@@ -248,6 +248,23 @@ img.polaroid-img{ display:block; width:100%; height:auto; object-fit:cover; }
 .foot-mini{ font-size:.85rem; color:#bfb495; margin:.2rem 0 0; max-width:62ch; }
 .foot-top{ margin-left:auto; color:#e8dcc4; text-decoration:none; font-family:var(--disp); font-weight:600; }
 
+.legal{ margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid rgba(232,220,196,.25); }
+.legal summary{
+  cursor:pointer; list-style:none; font-family:var(--disp); font-weight:600;
+  font-size:.9rem; color:#e8dcc4; text-decoration:underline; text-underline-offset:.2em;
+}
+.legal summary::-webkit-details-marker{ display:none; }
+.legal summary::before{ content:"+ "; text-decoration:none; }
+.legal[open] summary::before{ content:"– "; }
+.legal-body{ margin-top:1rem; max-width:62ch; font-size:.85rem; color:#bfb495; }
+.legal-body h3{
+  font-family:var(--disp); font-size:.95rem; color:#e8dcc4; margin:1.1rem 0 .3rem;
+}
+.legal-body h3:first-of-type{ margin-top:0; }
+.legal-body p{ margin:0 0 .6rem; }
+.legal-body a{ color:#e8dcc4; }
+.legal-note{ font-style:italic; }
+
 /* ---------- Révélation ---------- */
 .js .reveal{ opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease; }
 .js .reveal.is-in{ opacity:1; transform:none; }
