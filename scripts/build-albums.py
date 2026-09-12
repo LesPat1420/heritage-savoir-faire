@@ -83,8 +83,16 @@ def list_photos(folder):
     return sorted(f for f in os.listdir(p) if f.lower().endswith((".jpg", ".jpeg", ".png")))
 
 
+def normalise(im):
+    """Egalise exposition/contraste (etirement d'histogramme, 1% ecrete de
+    chaque cote) pour attenuer les ecarts entre photos prises a des dates/
+    conditions de lumiere differentes."""
+    return ImageOps.autocontrast(im, cutoff=1)
+
+
 def process(src_path, dst_base, edge, q=74):
     im = ImageOps.exif_transpose(Image.open(src_path)).convert("RGB")
+    im = normalise(im)
     im.thumbnail((edge, edge), Image.LANCZOS)
     im.save(dst_base + ".jpg", "JPEG", quality=q, optimize=True, progressive=True)
     im.save(dst_base + ".webp", "WEBP", quality=72, method=6)
@@ -126,6 +134,7 @@ def main():
             total += 1
         # vignette 760px du mur, a partir de la couverture (00)
         cov_im = ImageOps.exif_transpose(Image.open(os.path.join(SRC, folder, cover))).convert("RGB")
+        cov_im = normalise(cov_im)
         cov_im.thumbnail((760, 760), Image.LANCZOS)
         cov_im.save(os.path.join(album_dir, "00-thumb.jpg"), "JPEG", quality=78, optimize=True, progressive=True)
         cov_im.save(os.path.join(album_dir, "00-thumb.webp"), "WEBP", quality=78, method=6)

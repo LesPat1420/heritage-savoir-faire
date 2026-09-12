@@ -198,7 +198,147 @@ window.Charpente3D = (function () {
       };
     }
 
-    const BUILDERS = [buildFerme, buildAssemblage, buildColombage];
+    /* ========== Modèle 4 : portique poteaux-poutres ========== */
+    function buildPortique() {
+      const g = new THREE.Group();
+      const SPAN = 6, HALF = SPAN / 2, H = 3.3;
+
+      function makeFrame(z) {
+        const f = new THREE.Group();
+        member(f, -HALF, 0, -HALF, H, 0.4, 0.4, woodLight);
+        member(f,  HALF, 0,  HALF, H, 0.4, 0.4, woodLight);
+        member(f, -HALF, H, HALF, H, 0.42, 0.38, woodDark);
+        // aisseliers (jambes de force) aux angles
+        member(f, -HALF, H - 1.15, -HALF + 1.15, H, 0.22, 0.26);
+        member(f,  HALF, H - 1.15,  HALF - 1.15, H, 0.22, 0.26);
+        f.position.z = z;
+        return f;
+      }
+
+      const Z = opts.portiques || [-2.6, 0, 2.6];
+      Z.forEach((z) => g.add(makeFrame(z)));
+
+      const spanZ = Z[Z.length - 1] - Z[0] + 1.2;
+      function longBeam(x, y, h, d, mat) {
+        const m = beam(spanZ, h, d, mat);
+        m.rotation.y = Math.PI / 2;
+        m.position.set(x, y, 0);
+        g.add(m);
+      }
+      longBeam(-HALF, H, 0.26, 0.26, woodDark);
+      longBeam( HALF, H, 0.26, 0.26, woodDark);
+      longBeam(-HALF, H * 0.45, 0.2, 0.2);
+      longBeam( HALF, H * 0.45, 0.2, 0.2);
+
+      // contreventement en croix sur le premier pan, pour la lecture structurelle
+      const zf = Z[0];
+      function brace(x1, y1, x2, y2) {
+        const b = beam(Math.hypot(x2 - x1, y2 - y1), 0.1, 0.12, chevMat);
+        b.position.set((x1 + x2) / 2, (y1 + y2) / 2, zf);
+        b.rotation.z = Math.atan2(y2 - y1, x2 - x1);
+        g.add(b);
+      }
+      brace(-HALF, 0.3, HALF, H - 0.3);
+      brace(HALF, 0.3, -HALF, H - 0.3);
+
+      return {
+        group: g, name: 'Portique poteaux-poutres',
+        target: new THREE.Vector3(0, H * 0.5, 0),
+        dist: 13, phi: 1.12, theta: 0.75
+      };
+    }
+
+    /* ========== Modèle 5 : étaiement d'une charpente d'église ========== */
+    function buildEtaiement() {
+      const g = new THREE.Group();
+      const H = 4.1, HALF = 1.5;
+
+      // poutre soutenue (le dessous de la charpente d'origine)
+      member(g, -3.4, H, 3.4, H, 0.36, 0.4, woodDark);
+
+      function props(z) {
+        const p = new THREE.Group();
+        member(p, -HALF, 0.1, HALF, H - 0.1, 0.22, 0.22, woodLight);
+        member(p,  HALF, 0.1, -HALF, H - 0.1, 0.22, 0.22, woodLight);
+        box(p, HALF * 2 + 0.3, 0.12, 0.32, 0, 0.06, 0, woodDark);      // semelle au sol
+        box(p, HALF * 2 + 0.2, 0.14, 0.32, 0, H - 0.13, 0, woodDark); // sabot en tête
+        p.position.z = z;
+        return p;
+      }
+      [-2.6, 0, 2.6].forEach((z) => g.add(props(z)));
+
+      // étais verticaux isolés entre les paires, pour varier les rythmes
+      member(g, -1.3, 0, -1.3, H, 0.24, 0.24, woodLight);
+      member(g,  1.3, 0,  1.3, H, 0.24, 0.24, woodLight);
+
+      return {
+        group: g, name: "Étaiement d'église",
+        target: new THREE.Vector3(0, H * 0.48, 0),
+        dist: 12.5, phi: 1.14, theta: 0.68
+      };
+    }
+
+    /* ========== Modèle 6 : escalier balancé ========== */
+    function buildEscalier() {
+      const g = new THREE.Group();
+      // Echelle proche des autres modeles (span ~6-8) : marches larges et hautes.
+      const RUN = 0.7, RISE = 0.34, WIDTH = 1.7, THICK = 0.12, POST_R = 0.14;
+      let y = RISE;
+
+      // volée droite n°1 (direction +X) ; le noyau sera au coin interieur (z = -WIDTH/2)
+      const N1 = 4;
+      for (let i = 0; i < N1; i++) {
+        box(g, RUN, THICK, WIDTH, i * RUN + RUN / 2, y, 0, woodLight);
+        y += RISE;
+      }
+
+      const pivotX = N1 * RUN, pivotZ = -WIDTH / 2;
+
+      // marches balancées : 3 marches trapezoidales en eventail (0deg -> 90deg)
+      // autour du noyau, tracees comme un secteur d'anneau (etroit pres du
+      // noyau, large a l'exterieur) plutot que des rectangles qui se
+      // chevaucheraient.
+      const N2 = 3, rIn = POST_R + 0.05, rOut = WIDTH + 0.15;
+      for (let i = 0; i < N2; i++) {
+        const a0 = (i / N2) * (Math.PI / 2);
+        const a1 = ((i + 1) / N2) * (Math.PI / 2);
+        const shape = new THREE.Shape();
+        shape.moveTo(Math.cos(a0) * rIn, Math.sin(a0) * rIn);
+        shape.lineTo(Math.cos(a0) * rOut, Math.sin(a0) * rOut);
+        shape.lineTo(Math.cos(a1) * rOut, Math.sin(a1) * rOut);
+        shape.lineTo(Math.cos(a1) * rIn, Math.sin(a1) * rIn);
+        shape.closePath();
+        const geo = new THREE.ExtrudeGeometry(shape, { depth: THICK, bevelEnabled: false, curveSegments: 1 });
+        geo.rotateX(Math.PI / 2);
+        const m = new THREE.Mesh(geo, woodLight);
+        m.castShadow = true; m.receiveShadow = true;
+        m.position.set(pivotX, y + THICK, pivotZ);
+        g.add(m);
+        y += RISE;
+      }
+
+      // volée droite n°2 (direction +Z, à partir du noyau)
+      const N3 = 4;
+      for (let i = 0; i < N3; i++) {
+        box(g, WIDTH, THICK, RUN, pivotX + WIDTH / 2, y, pivotZ + i * RUN + RUN / 2, woodLight);
+        y += RISE;
+      }
+
+      // noyau, du sol jusqu'au-dessus de la dernière marche
+      const newelH = y + 0.5;
+      const newel = new THREE.Mesh(new THREE.CylinderGeometry(POST_R * 0.85, POST_R, newelH, 16), woodDark);
+      newel.position.set(pivotX, newelH / 2, pivotZ);
+      newel.castShadow = true; newel.receiveShadow = true;
+      g.add(newel);
+
+      return {
+        group: g, name: 'Escalier balancé',
+        target: new THREE.Vector3(pivotX * 0.7, y * 0.4, pivotZ + WIDTH * 0.4),
+        dist: 15.5, phi: 1.05, theta: -1.23
+      };
+    }
+
+    const BUILDERS = [buildFerme, buildAssemblage, buildColombage, buildPortique, buildEtaiement, buildEscalier];
     let modelIndex = Math.min(opts.model || 0, BUILDERS.length - 1);
     let current = null, currentName = '';
 

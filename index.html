@@ -401,7 +401,7 @@
 <script src="assets/js/projets.js?v=3" defer></script>
 <script src="assets/js/galerie.js?v=3" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="assets/js/charpente3d.js?v=7" defer></script>
+<script src="assets/js/charpente3d.js?v=8" defer></script>
 <script>
   /* Hero : diaporama logo -> modeles 3D -> retour au logo, 5 s par vue.
      Toujours manipulable (fleches, points, rotation a la souris ou au clavier).
@@ -421,7 +421,8 @@
     var MODELS = api.count || 3;
     var SLIDES = MODELS + 1;               // 0 = logo, 1..MODELS = modeles
     var STEP = 5000;
-    var LABELS = ['Logo', 'Ferme a poincon', 'Tenon-mortaise', 'Pan de bois'];
+    var LABELS = ['Logo', 'Ferme a poincon', 'Tenon-mortaise', 'Pan de bois',
+      'Portique poteaux-poutres', 'Etaiement d\'eglise', 'Escalier balance'];
     var slide = 0, timer = null, held = false;
     var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
